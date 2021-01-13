@@ -12,7 +12,9 @@ export default class ButtonBasics extends Component {
     private min: number = 0;
     private max: number = 100;
 
-    private basePath: string = 'https://localhost/';
+    //private hostname: string = '192.168.1.176';
+    private hostname: string = 'DESKTOP-FIBGVH5.home-life.hub';
+    private basePath: string = 'https://' + this.hostname + '/';
     private timeout: number = 3000;
 
     private axios : AxiosInstance = Axios.create({
@@ -26,6 +28,7 @@ export default class ButtonBasics extends Component {
     constructor(props: {} | Readonly<{}>) {
         super(props);
         this.state = {text: this.volume};
+        this.state = {hostname: this.hostname};
 
         this.load();
     }
@@ -38,7 +41,28 @@ export default class ButtonBasics extends Component {
         alert('Changed value!');
     }
 
-    _onChangeValue = (value: number) => {
+    _onChangeHostname = (value: string) => {
+        try {
+            if (value) {
+                this.setState({hostname: value})
+                this.hostname = value;
+                this.basePath = 'https://' + this.hostname + '/';
+                this.axios = Axios.create({
+                    baseURL: this.basePath,
+                    timeout: this.timeout,
+                    headers: {
+                        Accept: '*/*',
+                    }
+                });
+            } else {
+                alert('The value not good! Cannot set a null value')
+            }
+        } catch (e) {
+            alert('Not valid value!')
+        }
+    }
+
+    _onChangeVolume = (value: number) => {
         try {
             if (value >= 0 && value <= 100) {
                 this.setState({text: value})
@@ -130,6 +154,16 @@ export default class ButtonBasics extends Component {
                 </View>
                 <Separator/>
                 <View>
+                    <View style={styles.fixToTextCenter}>
+
+                            <TextInput
+                                style={styles.textInputStyle}
+                                onChangeText={this._onChangeHostname}
+                                value={this.state.hostname}
+                            />
+
+                    </View>
+                    <Separator/>
                     <View style={styles.fixToText}>
                         <View style={[{width: "20%"}]}>
                             <Button
@@ -146,7 +180,7 @@ export default class ButtonBasics extends Component {
                                 thumbTintColor={'#2198f2'}
                                 value={this.state.text}
                                 step={1}
-                                onValueChange={this._onChangeValue}
+                                onValueChange={this._onChangeVolume}
                             />
                         </View>
                         <View style={[{width: "20%"}]}>
@@ -203,6 +237,11 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         marginVertical: 8,
     },
+    fixToTextCenter: {
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center'
+    },
     fixToText: {
         flexDirection: 'row',
         justifyContent: 'space-between',
@@ -213,6 +252,7 @@ const styles = StyleSheet.create({
         borderBottomWidth: StyleSheet.hairlineWidth,
     },
     textInputStyle: {
+        width: 'auto',
         textAlign : 'center',
         height: 40,
         borderBottomWidth: 2,
@@ -221,12 +261,11 @@ const styles = StyleSheet.create({
     },
     volumeTitle: {
         fontSize: 40,
-        fontFamily: 'Arial, sans-serif'
     },
     header: {
         width: '100%',
         position: 'absolute',
-        top: 10,
+        top: 30,
         display: 'flex',
         flexDirection: 'column',
         justifyContent: 'center',
