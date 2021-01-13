@@ -24,7 +24,7 @@
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
       },
-      "package": "VolumeSetter.apk"
+      "package": "rob.volume.controller"
     },
     "web": {
       "favicon": "./assets/favicon.png"

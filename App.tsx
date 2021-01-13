@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Button, SafeAreaView, StyleSheet, Text, TextInput, View} from 'react-native';
+import {Button, SafeAreaView, StyleSheet, Text, TextInput, View, ToastAndroid, Switch} from 'react-native';
 import Axios, {AxiosInstance} from 'axios';
 import Slider from '@react-native-community/slider';
 
@@ -14,7 +14,13 @@ export default class ButtonBasics extends Component {
 
     //private hostname: string = '192.168.1.176';
     private hostname: string = 'DESKTOP-FIBGVH5.home-life.hub';
-    private basePath: string = 'https://' + this.hostname + '/';
+    private protocols: string[] = ['HTTP', 'HTTPS'];
+    private protocol: boolean = false;
+    private port: number = 8080;
+
+
+    private basePath: string = (this.protocol ? this.protocols[1] : this.protocols[0]) +
+        '://' + this.hostname + ':' + this.port + '/';
     private timeout: number = 3000;
 
     private axios : AxiosInstance = Axios.create({
@@ -27,8 +33,12 @@ export default class ButtonBasics extends Component {
 
     constructor(props: {} | Readonly<{}>) {
         super(props);
-        this.state = {text: this.volume};
-        this.state = {hostname: this.hostname};
+        this.state = {
+            volume: this.volume,
+            protocol: this.protocol,
+            hostname: this.hostname,
+            port: String(this.port),
+        };
 
         this.load();
     }
@@ -37,8 +47,30 @@ export default class ButtonBasics extends Component {
         this._getVolume();
     }
 
+    showToast = (message: string) => {
+        ToastAndroid.show(message, ToastAndroid.SHORT);
+    }
+
     _onPressButton() {
-        alert('Changed value!');
+        this.showToast('Changed value!');
+    }
+
+    _toggleSwitch = () => {
+        this.protocol = !this.protocol;
+        this.setState({protocol: this.protocol})
+
+        this._refreshBasePath();
+    }
+
+    _refreshBasePath = () => {
+        this.basePath = (this.protocol ? this.protocols[1] : this.protocols[0]) + '://' + this.hostname + ':' + this.port + '/';
+        this.axios = Axios.create({
+            baseURL: this.basePath,
+            timeout: this.timeout,
+            headers: {
+                Accept: '*/*',
+            }
+        });
     }
 
     _onChangeHostname = (value: string) => {
@@ -46,70 +78,76 @@ export default class ButtonBasics extends Component {
             if (value) {
                 this.setState({hostname: value})
                 this.hostname = value;
-                this.basePath = 'https://' + this.hostname + '/';
-                this.axios = Axios.create({
-                    baseURL: this.basePath,
-                    timeout: this.timeout,
-                    headers: {
-                        Accept: '*/*',
-                    }
-                });
+                this._refreshBasePath();
             } else {
-                alert('The value not good! Cannot set a null value')
+                this.showToast('The value not good! Cannot set a null value')
             }
         } catch (e) {
-            alert('Not valid value!')
+            this.showToast('Not valid value!')
+        }
+    }
+
+    _onChangePort = (value: string) => {
+        try {
+            const port = Number(value);
+            if (port) {
+                this.setState({port: port})
+                this.port = port;
+                this._refreshBasePath();
+            }
+        } catch (e) {
+            this.showToast('The value isn\'t not a number')
         }
     }
 
     _onChangeVolume = (value: number) => {
         try {
             if (value >= 0 && value <= 100) {
-                this.setState({text: value})
+                this.setState({volume: value})
                 this.volume = value;
             } else {
-                alert('The value not good! Set a value from 0 to 100')
+                this.showToast('The value not good! Set a value from 0 to 100')
             }
         } catch (e) {
-            alert('Not a value number!')
+            this.showToast('Not a value number!')
         }
     }
 
     _decreaseVolume = () => {
         if (this.volume > this.min) {
-            this.setState({text: this.volume - 1})
+            this.setState({volume: this.volume - 1})
             this.volume -= 1
         } else {
-            alert('Cannot decrease volume, min is reached!')
+            this.showToast('Cannot decrease volume, min is reached!')
         }
     }
 
     _increaseVolume = () => {
         if (this.volume < this.max) {
-            this.setState({text: this.volume + 1})
+            this.setState({volume: this.volume + 1})
             this.volume += 1
         } else {
-            alert('Cannot increase volume, max is reached!')
+            this.showToast('Cannot increase volume, max is reached!')
         }
     }
 
     _activeMute = () => {
         this.axios.put(this.basePath + 'volume/controller/muteOn')
             .then((response: any ) => {
-                alert(response.data.message);
+                this.showToast(response.data.message);
             })
             .catch((error: any) => {
-                alert(error.message + " " + error.code);
+                this.showToast(error.message + " " + error.code);
             });
     }
 
     _disableMute = () => {
         this.axios.put('volume/controller/muteOff')
             .then((response: any ) => {
-                alert(response.data.message);
+                this.showToast(response.data.message);
             })
             .catch((error: any) => {
-                alert(error.message + " " + error.code);
+                this.showToast(error.message + " " + error.code);
             });
     }
 
@@ -119,10 +157,10 @@ export default class ButtonBasics extends Component {
                 volume: this.volume
             })
             .then((response: any ) => {
-                alert(response.data.message);
+                this.showToast(response.data.message);
             })
             .catch((error: any) => {
-                alert(error.message + " " + error.code);
+                this.showToast(error.message + " " + error.code);
             });
     }
 
@@ -130,10 +168,11 @@ export default class ButtonBasics extends Component {
         this.axios.get('volume/controller/getVolume')
             .then((response: any ) => {
                 this.volume = response.data.volume;
-                this.setState({text: this.volume})
+                this.setState({volume: this.volume})
+                this.showToast('Value refreshed!');
             })
             .catch((error: any) => {
-                alert(error.message + " " + error.code);
+                this.showToast(error.message + ' ' + error.code);
             });
     }
 
@@ -143,7 +182,7 @@ export default class ButtonBasics extends Component {
                 <View style={styles.header}>
                     <View>
                         <Text>
-                            Current Volume
+                            Volume
                         </Text>
                     </View>
                     <View>
@@ -154,14 +193,32 @@ export default class ButtonBasics extends Component {
                 </View>
                 <Separator/>
                 <View>
-                    <View style={styles.fixToTextCenter}>
-
+                    <View style={{display: 'flex', flexDirection: 'column'}}>
+                        <View style={styles.fixToTextCenter}>
+                            <Text>{this.protocols[0]} </Text>
+                            <Switch
+                                trackColor={{ false: "#767577", true: "#2198f2" }}
+                                thumbColor={'#2198f2'}
+                                ios_backgroundColor='#2198f2'
+                                onValueChange={this._toggleSwitch}
+                                value={this.state.protocol}
+                            />
+                            <Text> {this.protocols[1]}</Text>
+                        </View>
+                        <View style={styles.fixToTextCenter}>
                             <TextInput
                                 style={styles.textInputStyle}
                                 onChangeText={this._onChangeHostname}
                                 value={this.state.hostname}
                             />
-
+                        </View>
+                        <View style={styles.fixToTextCenter}>
+                            <TextInput
+                                style={styles.textInputStyle}
+                                onChangeText={this._onChangePort}
+                                value={this.state.port}
+                            />
+                        </View>
                     </View>
                     <Separator/>
                     <View style={styles.fixToText}>
@@ -178,7 +235,7 @@ export default class ButtonBasics extends Component {
                                 maximumValue={100}
                                 minimumTrackTintColor={'#2198f2'}
                                 thumbTintColor={'#2198f2'}
-                                value={this.state.text}
+                                value={this.state.volume}
                                 step={1}
                                 onValueChange={this._onChangeVolume}
                             />
@@ -239,8 +296,9 @@ const styles = StyleSheet.create({
     },
     fixToTextCenter: {
         display: 'flex',
+        flexDirection: 'row',
         justifyContent: 'center',
-        alignItems: 'center'
+        alignItems: "center"
     },
     fixToText: {
         flexDirection: 'row',
