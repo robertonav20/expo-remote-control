@@ -39,9 +39,11 @@ const Pad = (props: {
 
 const styles = StyleSheet.create({
     scrollView: {
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
+        flex: 1,
+        flexGrow: 2,
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center'
     },
     box: {
         backgroundColor: "#2198f2",

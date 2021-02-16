@@ -1,8 +1,8 @@
 import Axios, {AxiosInstance} from 'axios';
 import {showToast} from "./Notification";
 
-//export const HOSTNAME: string = 'localhost';
-export const HOSTNAME: string = 'DESKTOP-FIBGVH5.home-life.hub';
+export const HOSTNAME: string = 'localhost';
+//export const HOSTNAME: string = 'DESKTOP-FIBGVH5.home-life.hub';
 export const PROTOCOLS: string[] = ['HTTP', 'HTTPS'];
 export const PROTOCOL: boolean = false;
 export const PORT: number = 8080;
