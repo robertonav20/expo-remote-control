@@ -1,7 +1,6 @@
 import React, {Component} from "react";
-import {Button, StyleSheet, Text, TextInput, TouchableOpacity, View} from "react-native";
+import {StyleSheet, Text, TouchableOpacity, View} from "react-native";
 import Pad from './Pad';
-import {Ionicons, MaterialCommunityIcons } from '@expo/vector-icons';
 import {_moveCallback} from "./Services";
 import TextInputIcon from "./TextInputIcon";
 
@@ -23,7 +22,6 @@ export default class Mouse extends Component<MousePropsComponent> {
     moveCallback(dx: number, dy: number) {
         this.dx = Math.round(dx * 100);
         this.dy = Math.round(dy * 100);
-        console.log();
         // @ts-ignore
         this.setState({dx: Math.round(dx * 100)})
         // @ts-ignore
@@ -50,8 +48,8 @@ export default class Mouse extends Component<MousePropsComponent> {
                     </TouchableOpacity>
                     <TouchableOpacity
                         style={styles.button}
-                        onPress={this.props.leftCallback}>
-                        <Text style={styles.buttonText}>Left Click</Text>
+                        onPress={this.props.rightCallback}>
+                        <Text style={styles.buttonText}>Right Click</Text>
                     </TouchableOpacity>
                 </View>
             </View>
