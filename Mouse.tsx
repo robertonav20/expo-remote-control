@@ -34,7 +34,8 @@ export default class Mouse extends Component<MousePropsComponent> {
             <View style={styles.container}>
                 <View style={styles.padContainer}>
                     <Pad moveCallback={(dx: number, dy: number) => this.moveCallback(dx, dy)}
-                         useNativeDriver={false} max={{x: 50, y: 50}}></Pad>
+                         useNativeDriver={false} max={{x: 50, y: 50}} height={'100%'}
+                         backgroundColor={'lightgray'}></Pad>
                 </View>
                 <View style={styles.coordinates}>
                     <TextInputIcon value={String(this.dx)} icon={"axis-x-arrow"} size={30} color={"#2198f2"}/>
