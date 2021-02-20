@@ -1,14 +1,6 @@
 import Axios, {AxiosInstance} from 'axios';
 import {showToast} from "./Notification";
-
-//export const HOSTNAME: string = 'localhost';
-export const HOSTNAME: string = 'DESKTOP-FIBGVH5.home-life.hub';
-export const PROTOCOLS: string[] = ['HTTP', 'HTTPS'];
-export const PROTOCOL: boolean = false;
-export const PORT: number = 8080;
-
-export const BASE_PATH: string = (PROTOCOL ? PROTOCOLS[1] : PROTOCOLS[0]) + '://' + HOSTNAME + ':' + PORT + '/';
-export const TIMEOUT: number = 3000;
+import {BASE_PATH, PROTOCOLS, TIMEOUT} from "./Variables";
 
 export let axios: AxiosInstance = Axios.create({
     baseURL: BASE_PATH,
@@ -101,7 +93,6 @@ export const _leftClick = () => {
 }
 
 export const _rightClick = () => {
-    console.log('asdasdasd')
     return axios.post('mouse/controller',{
             rightClick: true
         })
@@ -110,6 +101,19 @@ export const _rightClick = () => {
         })
         .catch((error: any) => {
             showToast(error.message + ' ' + error.code);
+            return Promise.reject();
+        });
+}
+
+export const _keyboardInputTrigger = (keyEvents: string[]) : Promise<string> => {
+    return axios.post('keyboard/controller',{
+            keyEvents: keyEvents
+        })
+        .then((response: any) => {
+            return Promise.resolve(response.data.message);
+        })
+        .catch((error: any) => {
+            showToast(error.message + ' ' + error.message);
             return Promise.reject();
         });
 }

@@ -2,19 +2,9 @@ import React, {Component} from 'react';
 import {SafeAreaView, Switch, Text, TextInput, View} from 'react-native';
 import Slider from '@react-native-community/slider';
 import {volumeScreenStyles} from './Styles';
-import {SimpleLineIcons,Ionicons,Octicons,AntDesign} from '@expo/vector-icons';
-import {
-    _activeMute,
-    _disableMute,
-    _getVolume,
-    _refreshBasePath,
-    _setVolume,
-    HOSTNAME,
-    PORT,
-    PROTOCOL,
-    PROTOCOLS,
-    TIMEOUT
-} from './Services';
+import {AntDesign, Ionicons, Octicons, SimpleLineIcons} from '@expo/vector-icons';
+import {_activeMute, _disableMute, _getVolume, _refreshBasePath, _setVolume,} from './Services';
+import {HOSTNAME, PORT, PROTOCOL, PROTOCOLS, TIMEOUT} from './Variables';
 import {showToast} from './Notification';
 
 export default class VolumeScreen extends Component<{}, { volume: number, protocol: boolean, hostname: string, port: number }> {
@@ -180,13 +170,15 @@ export default class VolumeScreen extends Component<{}, { volume: number, protoc
                                 style={volumeScreenStyles.textInputStyle}
                                 onChangeText={this._onChangePort}
                                 value={String(this.state.port)}
+                                keyboardType='numeric'
                             />
                         </View>
                     </View>
                     <View style={volumeScreenStyles.configuration}>
                         <View style={volumeScreenStyles.fixToText}>
                             <View style={[{width: "20%"}]}>
-                                <SimpleLineIcons.Button onPress={this._decreaseVolume} name="volume-1" size={24} color="white" style={volumeScreenStyles.iconVolumeButton}/>
+                                <SimpleLineIcons.Button onPress={this._decreaseVolume} name="volume-1" size={24}
+                                                        color="white" style={volumeScreenStyles.iconVolumeButton}/>
                             </View>
                             <View style={volumeScreenStyles.fixToText}>
                                 <Slider
@@ -201,18 +193,22 @@ export default class VolumeScreen extends Component<{}, { volume: number, protoc
                                 />
                             </View>
                             <View style={[{width: "20%"}]}>
-                                <SimpleLineIcons.Button onPress={this._increaseVolume} name="volume-2" size={24} color="white" style={volumeScreenStyles.iconVolumeButton}/>
+                                <SimpleLineIcons.Button onPress={this._increaseVolume} name="volume-2" size={24}
+                                                        color="white" style={volumeScreenStyles.iconVolumeButton}/>
                             </View>
                         </View>
                         <View style={volumeScreenStyles.title}>
-                            <AntDesign.Button onPress={this.setVolume} name="upload" size={24} color="white" style={volumeScreenStyles.iconVolumeButton}/>
+                            <AntDesign.Button onPress={this.setVolume} name="upload" size={24} color="white"
+                                              style={volumeScreenStyles.iconVolumeButton}/>
                         </View>
                         <View style={volumeScreenStyles.fixToText}>
                             <View style={[{width: "30%"}]}>
-                                <Ionicons.Button onPress={this.activeMute} name="volume-mute" size={24} color="white" style={volumeScreenStyles.iconVolumeButton}/>
+                                <Ionicons.Button onPress={this.activeMute} name="volume-mute" size={24} color="white"
+                                                 style={volumeScreenStyles.iconVolumeButton}/>
                             </View>
                             <View style={[{width: "30%"}]}>
-                                <Octicons.Button onPress={this.disableMute} name="unmute" size={24} color="white" style={volumeScreenStyles.iconVolumeButton}/>
+                                <Octicons.Button onPress={this.disableMute} name="unmute" size={24} color="white"
+                                                 style={volumeScreenStyles.iconVolumeButton}/>
                             </View>
                         </View>
                     </View>

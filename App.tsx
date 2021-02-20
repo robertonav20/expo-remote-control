@@ -1,14 +1,14 @@
 import * as React from 'react';
 import {Component} from 'react';
-import {Entypo, Foundation, SimpleLineIcons,} from '@expo/vector-icons';
+import {Entypo, Foundation, SimpleLineIcons} from '@expo/vector-icons';
 import {NavigationContainer} from '@react-navigation/native';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import VolumeScreen from './VolumeScreen';
 import MouseScreen from './MouseScreen';
 import KeyboardScreen from './KeyboardScreen';
+import MultimediaScreen from "./MultimediaScreen";
 import AppLoading from 'expo-app-loading';
 import * as Font from "expo-font";
-import {appScreenStyles} from "./Styles";
 
 const Tab = createBottomTabNavigator();
 
@@ -48,6 +48,8 @@ export default class App extends Component {
                                 return <SimpleLineIcons name="mouse" size={24} color={color}/>;
                             } else if (route.name === 'Keyboard') {
                                 return <Entypo name="keyboard" size={24} color={color}/>;
+                            } else if (route.name === 'Multimedia') {
+                                return <Entypo name="note" size={24} color={color}/>;
                             }
                         },
                     })}
@@ -66,6 +68,7 @@ export default class App extends Component {
                     <Tab.Screen name="Volume" component={VolumeScreen}/>
                     <Tab.Screen name="Mouse" component={MouseScreen}/>
                     <Tab.Screen name="Keyboard" component={KeyboardScreen}/>
+                    <Tab.Screen name="Multimedia" component={MultimediaScreen}/>
                 </Tab.Navigator>
             </NavigationContainer>
         );

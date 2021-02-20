@@ -1,5 +1,5 @@
 import React, {Component} from "react";
-import {StyleSheet, Text, TouchableOpacity, View} from "react-native";
+import {Picker, StyleSheet, Text, TouchableOpacity, View} from "react-native";
 import Pad from './Pad';
 import {_moveCallback} from "./Services";
 import TextInputIcon from "./TextInputIcon";
@@ -19,6 +19,16 @@ export default class Mouse extends Component<MousePropsComponent> {
     private dx: number = 0;
     private dy: number = 0;
 
+    constructor(props: MousePropsComponent) {
+        super(props);
+
+        this.state = {
+            dx: 0,
+            dy: 0,
+            pressure: '1'
+        }
+    }
+
     moveCallback(dx: number, dy: number) {
         this.dx = Math.round(dx * 100);
         this.dy = Math.round(dy * 100);
@@ -26,7 +36,8 @@ export default class Mouse extends Component<MousePropsComponent> {
         this.setState({dx: Math.round(dx * 100)})
         // @ts-ignore
         this.setState({dy: Math.round(dy * 100)})
-        _moveCallback(dx, dy, 1);
+        // @ts-ignore
+        _moveCallback(dx, dy, Number(this.state.pressure));
     }
 
     render() {
@@ -34,12 +45,29 @@ export default class Mouse extends Component<MousePropsComponent> {
             <View style={styles.container}>
                 <View style={styles.padContainer}>
                     <Pad moveCallback={(dx: number, dy: number) => this.moveCallback(dx, dy)}
-                         useNativeDriver={false} max={{x: 50, y: 50}} height={'100%'}
+                         useNativeDriver={false} max={{x: 150, y: 150}} height={'100%'}
                          backgroundColor={'lightgray'}></Pad>
                 </View>
                 <View style={styles.coordinates}>
                     <TextInputIcon value={String(this.dx)} icon={"axis-x-arrow"} size={30} color={"#2198f2"}/>
                     <TextInputIcon value={String(this.dy)} icon={"axis-y-arrow"} size={30} color={"#2198f2"}/>
+                    <View style={styles.pickerContainer}>
+                        <Picker
+                            style={styles.picker} itemStyle={styles.pickerItem}
+                            selectedValue={this.state.pressure}
+                            onValueChange={(itemValue) => this.setState({pressure: itemValue})}>
+                            <Picker.Item label="Sensibility : 10%" value="0.1" />
+                            <Picker.Item label="Sensibility : 20%" value="0.2" />
+                            <Picker.Item label="Sensibility : 30%" value="0.3" />
+                            <Picker.Item label="Sensibility : 40%" value="0.4" />
+                            <Picker.Item label="Sensibility : 50%" value="0.5" />
+                            <Picker.Item label="Sensibility : 60%" value="0.6" />
+                            <Picker.Item label="Sensibility : 70%" value="0.7" />
+                            <Picker.Item label="Sensibility : 80%" value="0.8" />
+                            <Picker.Item label="Sensibility : 90%" value="0.9" />
+                            <Picker.Item label="Sensibility : 100%" value="1" />
+                        </Picker>
+                    </View>
                 </View>
                 <View style={styles.buttonContainer}>
                     <TouchableOpacity
@@ -97,5 +125,29 @@ const styles = StyleSheet.create({
     buttonText: {
         color: 'white',
         fontFamily: 'Candara'
+    },
+    pickerContainer: {
+        color: '#2198f2',
+        backgroundColor: 'white',
+        borderColor: 'white',
+        borderRadius: 50,
+        borderStyle: undefined,
+        margin: 10
+    },
+    picker: {
+        width: 300,
+        height: 40,
+        color: '#2198f2',
+        fontSize: 20,
+        fontFamily: 'Candara',
+        borderColor: 'white',
+        borderRadius: 50,
+        borderStyle: undefined
+    },
+    pickerItem: {
+        padding: 5,
+        color: '#2198f2',
+        backgroundColor: 'white',
+        borderStyle: undefined
     }
 });

@@ -78,11 +78,9 @@ export const volumeScreenStyles = StyleSheet.create({
         color: 'white',
         backgroundColor: '#2198f2',
         width: 'auto',
-        margin: 0,
-        paddingLeft: 18
+        margin: 0
     }
 });
-
 
 export const mouseScreenStyles = StyleSheet.create({
     container: {
@@ -97,6 +95,84 @@ export const keyboardScreenStyles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center'
+    }
+})
+
+export const multimediaScreenStyles = StyleSheet.create({
+    container: {
+        flex: 1,
+        flexDirection: 'row',
+        justifyContent: 'center',
+        alignItems: 'center',
+        paddingTop: 50
+    },
+    shortcutsContainer: {
+        flex: 1,
+        flexGrow: 1,
+        flexDirection: 'column',
+        alignItems: 'center',
+        justifyContent: 'center',
+        height: '100%'
+    },
+    shutdownContainer: {
+
+    },
+    multimediaButtonContainer: {
+        flex: 1,
+        flexDirection: 'column',
+        alignItems: 'flex-end',
+        justifyContent: 'flex-end'
+    },
+    volumeButtonContainer: {
+        flex: 1,
+        flexDirection: 'column',
+        alignItems: 'flex-start',
+        justifyContent: 'flex-start'
+    },
+    mainContainer: {
+        flex: 1,
+        flexGrow: 3,
+        flexDirection: 'column',
+        alignItems: 'center',
+        justifyContent: 'center'
+    },
+    button: {
+        alignItems: 'center',
+        borderColor: '#2198f2',
+        backgroundColor: '#2198f2',
+        borderRadius: 5,
+        padding: 10,
+        margin: 5,
+        width: 'auto',
+        height: 'auto'
+    },
+    buttonText: {
+        color: 'white',
+        fontFamily: 'Candara',
+    },
+    icon: {
+        display: 'flex',
+        justifyContent: 'center',
+        color: 'white',
+        borderColor: '#2198f2',
+        backgroundColor: 'orange',
+        width: 40,
+        height: 40
+    },
+    headerContainer: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+    centerContainer: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+    footerContainer: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'center',
     }
 })
 

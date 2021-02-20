@@ -1,5 +1,5 @@
 import React, {useRef} from "react";
-import {Animated, PanResponder, StyleSheet, TextInput, View} from "react-native";
+import {Animated, PanResponder, StyleSheet, View} from "react-native";
 
 const Pad = (props: {
     moveCallback: any,
@@ -43,11 +43,24 @@ const Pad = (props: {
     }
 
     return (
-        <View style={ scroll }>
-            <Animated.View
-                {...panResponder.panHandlers}
-                style={[pan.getTranslateTransform(), styles.box]}
-            />
+        <View style={scroll}>
+            <View style={
+                {
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    backgroundColor: props.backgroundColor,
+                    borderStyle: 'solid',
+                    borderColor: '#F2F2F2',
+                    borderWidth: 2,
+                    width: 80 + props.max.x,
+                    height: 80 + props.max.y,
+                    borderRadius: 80 + props.max.x,
+                }}>
+                <Animated.View
+                    {...panResponder.panHandlers}
+                    style={[pan.getTranslateTransform(), styles.box]}
+                />
+            </View>
         </View>
     );
 };
