@@ -1,5 +1,5 @@
-export const HOSTNAME: string = 'localhost';
-//export const HOSTNAME: string = 'DESKTOP-FIBGVH5';
+//export const HOSTNAME: string = 'localhost';
+export const HOSTNAME: string = 'DESKTOP-FIBGVH5';
 //export const HOSTNAME: string = 'MIL-JPL23Z2';
 export const PROTOCOLS: string[] = ['HTTP', 'HTTPS'];
 export const PROTOCOL: boolean = false;
