@@ -1,7 +1,7 @@
-import React, {useRef} from "react";
-import {Animated, PanResponder, StyleSheet, View} from "react-native";
+import React, {Component} from "react";
+import {Animated, PanResponder, StyleSheet, View, ViewStyle} from "react-native";
 
-const Pad = (props: {
+export interface PadPropsComponent {
     moveCallback: any,
     useNativeDriver: boolean,
     backgroundColor: string,
@@ -9,60 +9,92 @@ const Pad = (props: {
     max: {
         x: number;
         y: number;
-    };
-}) => {
-    const pan = useRef(new Animated.ValueXY()).current;
+    }
+}
 
-    let animate = Animated.event([null, {dx: pan.x, dy: pan.y}], {useNativeDriver: props.useNativeDriver});
-    let animateOrigin = Animated.event([null, {
-        dx: new Animated.Value(0),
-        dy: new Animated.Value(0)
-    }], {useNativeDriver: props.useNativeDriver});
-    let backToZero = Animated.spring(pan, {useNativeDriver: props.useNativeDriver, toValue: {x: 0, y: 0}});
-
-    const panResponder = PanResponder.create({
-        onStartShouldSetPanResponder: () => true,
-        onPanResponderMove: (e, gesture) => {
-            props.moveCallback(gesture.dx, gesture.dy);
-            if (Math.abs(gesture.dx) < props.max.x && Math.abs(gesture.dy) < props.max.y) animate(e, gesture);
-            else animateOrigin(e, gesture);
-        },
-        onPanResponderRelease: () => {
-            backToZero.start()
-        }
-    });
-
-    const scroll = {
+export default class Pad extends Component<PadPropsComponent, { pan: any, panStateLock: boolean }> {
+    private readonly animate: any;
+    private readonly animateOrigin: any;
+    private backToZero: any;
+    private panResponder: any;
+    private scroll = {
         flex: 1,
         flexGrow: 2,
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: props.backgroundColor ? props.backgroundColor : 'tomato',
+        backgroundColor: this.props.backgroundColor ? this.props.backgroundColor : 'tomato',
         width: '100%',
-        height: props.height ? props.height : '100%'
+        height: this.props.height ? this.props.height : '100%'
+    } as ViewStyle;
+
+    constructor(props: PadPropsComponent) {
+        super(props);
+
+        this.state = {
+            pan: new Animated.ValueXY(),
+            panStateLock: false
+        };
+
+        this.state.pan.addListener((event: any) => {
+            if (!this.state.panStateLock) this.props.moveCallback(event.x, event.y)
+        });
+        this.animate = Animated.event([null, {dx: this.state.pan.x, dy: this.state.pan.y}], {
+            useNativeDriver: this.props.useNativeDriver
+        });
+        this.animateOrigin = Animated.event([null, {
+            dx: new Animated.Value(0),
+            dy: new Animated.Value(0)
+        }], {useNativeDriver: this.props.useNativeDriver});
+        this.backToZero = Animated.spring(this.state.pan,
+            {
+                useNativeDriver: this.props.useNativeDriver,
+                toValue: {x: 0, y: 0}
+            }
+        );
+
+        this.panResponder = PanResponder.create({
+            onStartShouldSetPanResponder: () => true,
+            onPanResponderMove: (e, gesture) => {
+                if (Math.abs(gesture.dx) - 80 >= this.props.max.x || Math.abs(gesture.dy) - 80 >= this.props.max.y) this.animateOrigin(e, gesture);
+                else this.animate(e, gesture);
+                this.props.moveCallback(gesture.dx, gesture.dy);
+                this.setState({panStateLock: false});
+            },
+            onPanResponderRelease: () => {
+                this.setState({panStateLock: true});
+                this.backToZero.start()
+            }
+        });
     }
 
-    return (
-        <View style={scroll}>
-            <View style={
-                {
-                    justifyContent: 'center',
-                    alignItems: 'center',
-                    backgroundColor: props.backgroundColor,
-                    borderStyle: 'solid',
-                    borderColor: '#F2F2F2',
-                    borderWidth: 2,
-                    width: 80 + props.max.x,
-                    height: 80 + props.max.y,
-                    borderRadius: 80 + props.max.x,
-                }}>
-                <Animated.View
-                    {...panResponder.panHandlers}
-                    style={[pan.getTranslateTransform(), styles.box]}
-                />
+    render() {
+        return (
+            <View style={this.scroll}>
+                <View style={
+                    {
+                        justifyContent: 'center',
+                        alignItems: 'center',
+                        backgroundColor: this.props.backgroundColor,
+                        borderStyle: 'solid',
+                        borderColor: '#F2F2F2',
+                        borderWidth: 2,
+                        width: 80 + this.props.max.x,
+                        height: 80 + this.props.max.y,
+                        borderRadius: 80 + this.props.max.x,
+                    }}>
+                    <Animated.View
+                        {...this.panResponder.panHandlers}
+                        style={
+                            {
+                                transform: [{translateX: this.state.pan.x}, {translateY: this.state.pan.y}],
+                                ...styles.box
+                            }
+                        }
+                    />
+                </View>
             </View>
-        </View>
-    );
+        );
+    }
 };
 
 const styles = StyleSheet.create({
@@ -81,5 +113,3 @@ const styles = StyleSheet.create({
     },
     noValues: {}
 });
-
-export default Pad;

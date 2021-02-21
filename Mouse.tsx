@@ -15,7 +15,7 @@ export interface MousePropsComponent {
     }
 }
 
-export default class Mouse extends Component<MousePropsComponent> {
+export default class Mouse extends Component<MousePropsComponent, {pressure: string, dx: number, dy: number}> {
     private dx: number = 0;
     private dy: number = 0;
 
@@ -30,12 +30,12 @@ export default class Mouse extends Component<MousePropsComponent> {
     }
 
     moveCallback(dx: number, dy: number) {
-        this.dx = Math.round(dx * 100);
-        this.dy = Math.round(dy * 100);
+        this.dx = Math.round(dx);
+        this.dy = Math.round(dy);
         // @ts-ignore
-        this.setState({dx: Math.round(dx * 100)})
+        this.setState({dx: Math.round(dx)})
         // @ts-ignore
-        this.setState({dy: Math.round(dy * 100)})
+        this.setState({dy: Math.round(dy)})
         // @ts-ignore
         _moveCallback(dx, dy, Number(this.state.pressure));
     }
@@ -45,7 +45,7 @@ export default class Mouse extends Component<MousePropsComponent> {
             <View style={styles.container}>
                 <View style={styles.padContainer}>
                     <Pad moveCallback={(dx: number, dy: number) => this.moveCallback(dx, dy)}
-                         useNativeDriver={false} max={{x: 150, y: 150}} height={'100%'}
+                         useNativeDriver={false} max={{x: 300, y: 300}} height={'100%'}
                          backgroundColor={'lightgray'}></Pad>
                 </View>
                 <View style={styles.coordinates}>

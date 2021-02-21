@@ -5,7 +5,7 @@ import {AntDesign, Feather, MaterialCommunityIcons, SimpleLineIcons} from "@expo
 import {_getVolume, _keyboardInputTrigger, _setVolume} from "./Services";
 import {showToast} from "./Notification";
 
-export default class MultimediaScreen extends Component {
+export default class MultimediaScreen extends Component<{}, { size: number, volume: number }> {
     private volume: number = 50;
     private max: number = 100;
 
@@ -56,7 +56,6 @@ export default class MultimediaScreen extends Component {
         }
     }
 
-
     render() {
         return (
             <View style={multimediaScreenStyles.container}>
@@ -67,6 +66,12 @@ export default class MultimediaScreen extends Component {
                             <Feather.Button name="power" size={this.state.size} color="white"
                                             onPress={() => this.onPress(['VK_ALT', 'VK_F4'])}
                                             style={{...multimediaScreenStyles.icon, backgroundColor: 'tomato'}}/>
+                        </TouchableOpacity>
+                        <TouchableOpacity
+                            style={multimediaScreenStyles.button}>
+                            <AntDesign.Button name="swap" size={this.state.size} color="white"
+                                              onPress={() => this.onPress(['VK_ALT', 'VK_TAB'])}
+                                              style={multimediaScreenStyles.icon}/>
                         </TouchableOpacity>
                     </View>
                     <View style={multimediaScreenStyles.multimediaButtonContainer}>
