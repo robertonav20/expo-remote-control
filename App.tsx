@@ -9,6 +9,7 @@ import KeyboardScreen from './KeyboardScreen';
 import MultimediaScreen from "./MultimediaScreen";
 import AppLoading from 'expo-app-loading';
 import * as Font from "expo-font";
+import {loadVariables} from "./Variables";
 
 const Tab = createBottomTabNavigator();
 
@@ -22,6 +23,7 @@ export default class App extends Component {
 
     async componentDidMount() {
         try {
+            await loadVariables();
             await Font.loadAsync({
                 Candara: require('./assets/fonts/candara.ttf')
             })

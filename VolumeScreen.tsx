@@ -1,9 +1,9 @@
 import React, {Component} from 'react';
-import {SafeAreaView, Switch, Text, TextInput, View} from 'react-native';
+import {Picker, SafeAreaView, Switch, Text, TextInput, View} from 'react-native';
 import Slider from '@react-native-community/slider';
-import {volumeScreenStyles} from './Styles';
+import {commonStyles, volumeScreenStyles} from './Styles';
 import {AntDesign, Ionicons, Octicons, SimpleLineIcons} from '@expo/vector-icons';
-import {_activeMute, _disableMute, _getVolume, _refreshBasePath, _setVolume,} from './Services';
+import {_activeMute, _disableMute, _getVolume, _refreshBasePath, _setVolume, getData, storeData,} from './Services';
 import {HOSTNAME, PORT, PROTOCOL, PROTOCOLS, TIMEOUT} from './Variables';
 import {showToast} from './Notification';
 
@@ -32,6 +32,9 @@ export default class VolumeScreen extends Component<{}, { volume: number, protoc
 
     load = () => {
         this.getVolume();
+        this.getProtocol();
+        this.getHostname();
+        this.getPort();
     }
 
     _onPressButton = () => {
@@ -39,21 +42,52 @@ export default class VolumeScreen extends Component<{}, { volume: number, protoc
     }
 
     _toggleSwitch = () => {
-        this.protocol = !this.protocol;
-        this.setState({protocol: this.protocol})
-        this.refreshBasePath();
+        storeData('protocol', !this.protocol).then(r => {
+            this.protocol = !this.protocol;
+            this.setState({protocol: this.protocol})
+            this.refreshBasePath();
+        });
     }
 
     refreshBasePath = () => {
         _refreshBasePath(this.protocol, this.hostname, this.port, this.timeout);
     }
 
+    getProtocol() {
+        getData('protocol')
+            .then(value => {
+                if (value) {
+                    this.setState({protocol: Boolean(value)});
+                }
+            });
+    }
+
+    getHostname() {
+        getData('hostname')
+            .then(value => {
+                if (value) {
+                    this.setState({hostname: value});
+                }
+            });
+    }
+
+    getPort() {
+        getData('port')
+            .then(value => {
+                if (value) {
+                    this.setState({port: Number(value)});
+                }
+            });
+    }
+
     _onChangeHostname = (value: string) => {
         try {
             if (value) {
-                this.setState({hostname: value})
-                this.hostname = value;
-                this.refreshBasePath();
+                storeData('hostname', value).then(r => {
+                    this.setState({hostname: value})
+                    this.hostname = value;
+                    this.refreshBasePath();
+                });
             } else {
                 showToast('The value not good! Cannot set a null value')
             }
@@ -66,9 +100,11 @@ export default class VolumeScreen extends Component<{}, { volume: number, protoc
         try {
             const port = Number(value);
             if (port) {
-                this.setState({port: port})
-                this.port = port;
-                this.refreshBasePath();
+                storeData('port', port).then(r => {
+                    this.setState({port: port})
+                    this.port = port;
+                    this.refreshBasePath();
+                });
             }
         } catch (e) {
             showToast('The value isn\'t not a number')
@@ -158,20 +194,24 @@ export default class VolumeScreen extends Component<{}, { volume: number, protoc
                             />
                             <Text style={volumeScreenStyles.protocolTextStyle}>{this.protocols[1]}</Text>
                         </View>
-                        <View style={volumeScreenStyles.fixToTextCenter}>
-                            <TextInput
-                                style={volumeScreenStyles.textInputStyle}
-                                onChangeText={this._onChangeHostname}
-                                value={this.state.hostname}
-                            />
+                        <View style={commonStyles.pickerContainer}>
+                            <Picker
+                                style={commonStyles.picker} itemStyle={commonStyles.pickerItem}
+                                selectedValue={this.state.hostname}
+                                onValueChange={(itemValue) => this._onChangeHostname(itemValue)}>
+                                <Picker.Item label="LOCALHOST" value="localhost"/>
+                                <Picker.Item label="PC - DESKTOP" value="DESKTOP-FIBGVH5"/>
+                                <Picker.Item label="PC - EVERIS" value="MIL-JPL23Z2"/>
+                            </Picker>
                         </View>
-                        <View style={volumeScreenStyles.fixToTextCenter}>
-                            <TextInput
-                                style={volumeScreenStyles.textInputStyle}
-                                onChangeText={this._onChangePort}
-                                value={String(this.state.port)}
-                                keyboardType='numeric'
-                            />
+                        <View style={commonStyles.pickerContainer}>
+                            <Picker
+                                style={commonStyles.picker} itemStyle={commonStyles.pickerItem}
+                                selectedValue={this.state.port}
+                                onValueChange={(itemValue) => this._onChangePort(itemValue)}>
+                                <Picker.Item label="STANDARD" value="8080"/>
+                                <Picker.Item label="SECURED" value="443"/>
+                            </Picker>
                         </View>
                     </View>
                     <View style={volumeScreenStyles.configuration}>

@@ -1,6 +1,7 @@
 import Axios, {AxiosInstance} from 'axios';
 import {showToast} from "./Notification";
 import {BASE_PATH, PROTOCOLS, TIMEOUT} from "./Variables";
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export let axios: AxiosInstance = Axios.create({
     baseURL: BASE_PATH,
@@ -71,7 +72,7 @@ export const _moveCallback = (x: number, y: number, pressure: number) => {
             pressure
         })
         .then((response: any) => {
-            return Promise.resolve(response.data.volume);
+            return Promise.resolve(response.data);
         })
         .catch((error: any) => {
             showToast(error.message + ' ' + error.code);
@@ -116,4 +117,35 @@ export const _keyboardInputTrigger = (keyEvents: string[]) : Promise<string> => 
             showToast(error.message + ' ' + error.message);
             return Promise.reject();
         });
+}
+
+export const _getMouseLocation = () : Promise<any> => {
+    return axios.get('mouse/controller/location')
+        .then((response: any) => {
+            return Promise.resolve(response.data);
+        })
+        .catch((error: any) => {
+            showToast(error.code + ' ' + error.message);
+            return Promise.reject();
+        });
+}
+
+export const storeData = async (key: string, value: any) => {
+    try {
+        await AsyncStorage.setItem(key, value)
+    } catch (e) {
+        showToast(e);
+    }
+}
+
+export const getData = async (key: string) => {
+    try {
+        const value = await AsyncStorage.getItem(key);
+        if (value !== null) {
+            return value;
+        } else return null
+    } catch(e) {
+        showToast(e);
+        return null;
+    }
 }

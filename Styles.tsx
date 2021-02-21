@@ -1,5 +1,34 @@
 import {StyleSheet} from 'react-native';
 
+export const commonStyles = StyleSheet.create({
+    pickerContainer: {
+        color: '#2198f2',
+        backgroundColor: 'white',
+        borderColor: 'white',
+        borderRadius: 50,
+        borderStyle: undefined,
+        margin: 10,
+        justifyContent: 'space-evenly',
+        alignItems: 'center'
+    },
+    picker: {
+        width: 300,
+        height: 40,
+        color: '#2198f2',
+        fontSize: 20,
+        fontFamily: 'Candara',
+        borderColor: 'white',
+        borderRadius: 50,
+        borderStyle: undefined
+    },
+    pickerItem: {
+        padding: 5,
+        color: '#2198f2',
+        backgroundColor: 'white',
+        borderStyle: undefined
+    }
+});
+
 export const volumeScreenStyles = StyleSheet.create({
     container: {
         flex: 1,

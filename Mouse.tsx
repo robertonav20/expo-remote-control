@@ -1,8 +1,10 @@
 import React, {Component} from "react";
 import {Picker, StyleSheet, Text, TouchableOpacity, View} from "react-native";
 import Pad from './Pad';
-import {_moveCallback} from "./Services";
+import {_getMouseLocation, _moveCallback, getData, storeData} from "./Services";
 import TextInputIcon from "./TextInputIcon";
+import {showToast} from "./Notification";
+import {commonStyles} from "./Styles";
 
 export interface MousePropsComponent {
     leftCallback: any,
@@ -15,7 +17,7 @@ export interface MousePropsComponent {
     }
 }
 
-export default class Mouse extends Component<MousePropsComponent, {pressure: string, dx: number, dy: number}> {
+export default class Mouse extends Component<MousePropsComponent, { pressure: string, dx: number, dy: number }> {
     private dx: number = 0;
     private dy: number = 0;
 
@@ -25,19 +27,55 @@ export default class Mouse extends Component<MousePropsComponent, {pressure: str
         this.state = {
             dx: 0,
             dy: 0,
-            pressure: '1'
+            pressure: '0.3'
         }
+
+        this.load();
+    }
+
+    load() {
+        this.getMouseLocation();
+        this.getPressure();
+    }
+
+    getMouseLocation() {
+        _getMouseLocation()
+            .then(mouse => this.updateCoordinates(mouse))
+            .catch((error: any) => {
+                error ? showToast(error.message) : showToast('Something went wrong!');
+            });
     }
 
     moveCallback(dx: number, dy: number) {
-        this.dx = Math.round(dx);
-        this.dy = Math.round(dy);
-        // @ts-ignore
-        this.setState({dx: Math.round(dx)})
-        // @ts-ignore
-        this.setState({dy: Math.round(dy)})
-        // @ts-ignore
-        _moveCallback(dx, dy, Number(this.state.pressure));
+        _moveCallback(dx, dy, Number(this.state.pressure))
+            .then(mouse => this.updateCoordinates(mouse));
+    }
+
+    updateCoordinates(mouse: any) {
+        storeData('mouse', JSON.stringify(mouse)).then(r => {
+            this.dx += Math.round(mouse.x);
+            this.dy += Math.round(mouse.y);
+            // @ts-ignore
+            this.setState({dx: mouse.x})
+            // @ts-ignore
+            this.setState({dy: mouse.y});
+        });
+    }
+
+    updatePressure(pressure: string) {
+        storeData('pressure', pressure).then(r => {
+            // @ts-ignore
+            this.setState({pressure: pressure});
+        });
+    }
+
+    getPressure() {
+        getData('pressure')
+            .then(value => {
+                if (value) {
+                    this.setState({pressure: value});
+                }
+            });
     }
 
     render() {
@@ -51,21 +89,21 @@ export default class Mouse extends Component<MousePropsComponent, {pressure: str
                 <View style={styles.coordinates}>
                     <TextInputIcon value={String(this.dx)} icon={"axis-x-arrow"} size={30} color={"#2198f2"}/>
                     <TextInputIcon value={String(this.dy)} icon={"axis-y-arrow"} size={30} color={"#2198f2"}/>
-                    <View style={styles.pickerContainer}>
+                    <View style={commonStyles.pickerContainer}>
                         <Picker
-                            style={styles.picker} itemStyle={styles.pickerItem}
+                            style={commonStyles.picker} itemStyle={commonStyles.pickerItem}
                             selectedValue={this.state.pressure}
-                            onValueChange={(itemValue) => this.setState({pressure: itemValue})}>
-                            <Picker.Item label="Sensibility : 10%" value="0.1" />
-                            <Picker.Item label="Sensibility : 20%" value="0.2" />
-                            <Picker.Item label="Sensibility : 30%" value="0.3" />
-                            <Picker.Item label="Sensibility : 40%" value="0.4" />
-                            <Picker.Item label="Sensibility : 50%" value="0.5" />
-                            <Picker.Item label="Sensibility : 60%" value="0.6" />
-                            <Picker.Item label="Sensibility : 70%" value="0.7" />
-                            <Picker.Item label="Sensibility : 80%" value="0.8" />
-                            <Picker.Item label="Sensibility : 90%" value="0.9" />
-                            <Picker.Item label="Sensibility : 100%" value="1" />
+                            onValueChange={(itemValue) => this.updatePressure(itemValue)}>
+                            <Picker.Item label="Sensibility : 10%" value="0.1"/>
+                            <Picker.Item label="Sensibility : 20%" value="0.2"/>
+                            <Picker.Item label="Sensibility : 30%" value="0.3"/>
+                            <Picker.Item label="Sensibility : 40%" value="0.4"/>
+                            <Picker.Item label="Sensibility : 50%" value="0.5"/>
+                            <Picker.Item label="Sensibility : 60%" value="0.6"/>
+                            <Picker.Item label="Sensibility : 70%" value="0.7"/>
+                            <Picker.Item label="Sensibility : 80%" value="0.8"/>
+                            <Picker.Item label="Sensibility : 90%" value="0.9"/>
+                            <Picker.Item label="Sensibility : 100%" value="1"/>
                         </Picker>
                     </View>
                 </View>
@@ -125,29 +163,5 @@ const styles = StyleSheet.create({
     buttonText: {
         color: 'white',
         fontFamily: 'Candara'
-    },
-    pickerContainer: {
-        color: '#2198f2',
-        backgroundColor: 'white',
-        borderColor: 'white',
-        borderRadius: 50,
-        borderStyle: undefined,
-        margin: 10
-    },
-    picker: {
-        width: 300,
-        height: 40,
-        color: '#2198f2',
-        fontSize: 20,
-        fontFamily: 'Candara',
-        borderColor: 'white',
-        borderRadius: 50,
-        borderStyle: undefined
-    },
-    pickerItem: {
-        padding: 5,
-        color: '#2198f2',
-        backgroundColor: 'white',
-        borderStyle: undefined
     }
 });
