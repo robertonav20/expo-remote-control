@@ -1,10 +1,18 @@
 import React, {Component} from 'react';
-import {Picker, SafeAreaView, Switch, Text, TextInput, View} from 'react-native';
+import {Picker, SafeAreaView, Switch, Text, View} from 'react-native';
 import Slider from '@react-native-community/slider';
 import {commonStyles, volumeScreenStyles} from './Styles';
 import {AntDesign, Ionicons, Octicons, SimpleLineIcons} from '@expo/vector-icons';
-import {_activeMute, _disableMute, _getVolume, _refreshBasePath, _setVolume, getData, storeData,} from './Services';
-import {HOSTNAME, PORT, PROTOCOL, PROTOCOLS, TIMEOUT} from './Variables';
+import {_activeMute, _disableMute, _getVolume, _setVolume} from './Services';
+import {
+    _refreshBasePath,
+    getServerConfiguration,
+    HOSTNAME,
+    PORT,
+    PROTOCOLS,
+    TIMEOUT,
+    updateServerConfiguration
+} from './Variables';
 import {showToast} from './Notification';
 
 export default class VolumeScreen extends Component<{}, { volume: number, protocol: boolean, hostname: string, port: number }> {
@@ -14,80 +22,60 @@ export default class VolumeScreen extends Component<{}, { volume: number, protoc
 
     private hostname: string = HOSTNAME;
     private protocols: string[] = PROTOCOLS;
-    private protocol: boolean = PROTOCOL;
+    private protocol: boolean = false;
     private port: number = PORT;
     private timeout: number = TIMEOUT;
 
     constructor(props: {} | Readonly<{}>) {
         super(props);
+
         this.state = {
             volume: this.volume,
             protocol: this.protocol,
             hostname: this.hostname,
             port: this.port
         };
+    }
 
-        this.load();
+    componentDidMount() {
+        getServerConfiguration()
+            .then(configuration => {
+                console.log('SERVER LOADING')
+
+                this.protocol = configuration.protocol;
+                this.hostname = configuration.hostname;
+                this.port = configuration.port;
+                this.timeout = configuration.timeout;
+                this.setState({
+                    volume: this.volume,
+                    protocol: this.protocol,
+                    hostname: this.hostname,
+                    port: this.port
+                });
+                this.load();
+            });
     }
 
     load = () => {
         this.getVolume();
-        this.getProtocol();
-        this.getHostname();
-        this.getPort();
-    }
-
-    _onPressButton = () => {
-        showToast('Changed value!');
-    }
-
-    _toggleSwitch = () => {
-        storeData('protocol', !this.protocol).then(r => {
-            this.protocol = !this.protocol;
-            this.setState({protocol: this.protocol})
-            this.refreshBasePath();
-        });
     }
 
     refreshBasePath = () => {
         _refreshBasePath(this.protocol, this.hostname, this.port, this.timeout);
     }
 
-    getProtocol() {
-        getData('protocol')
-            .then(value => {
-                if (value) {
-                    this.setState({protocol: Boolean(value)});
-                }
-            });
-    }
-
-    getHostname() {
-        getData('hostname')
-            .then(value => {
-                if (value) {
-                    this.setState({hostname: value});
-                }
-            });
-    }
-
-    getPort() {
-        getData('port')
-            .then(value => {
-                if (value) {
-                    this.setState({port: Number(value)});
-                }
-            });
+    _toggleSwitch = () => {
+        this.protocol = !this.protocol;
+        this.setState({protocol: this.protocol});
+        updateServerConfiguration(this.protocol, this.hostname, this.port, this.timeout);
     }
 
     _onChangeHostname = (value: string) => {
         try {
             if (value) {
-                storeData('hostname', value).then(r => {
-                    this.setState({hostname: value})
-                    this.hostname = value;
-                    this.refreshBasePath();
-                });
+                this.setState({hostname: value})
+                this.hostname = value;
+                updateServerConfiguration(this.protocol, this.hostname, this.port, this.timeout);
             } else {
                 showToast('The value not good! Cannot set a null value')
             }
@@ -100,11 +88,9 @@ export default class VolumeScreen extends Component<{}, { volume: number, protoc
         try {
             const port = Number(value);
             if (port) {
-                storeData('port', port).then(r => {
-                    this.setState({port: port})
-                    this.port = port;
-                    this.refreshBasePath();
-                });
+                this.setState({port: port});
+                this.port = port;
+                updateServerConfiguration(this.protocol, this.hostname, this.port, this.timeout);
             }
         } catch (e) {
             showToast('The value isn\'t not a number')
@@ -160,7 +146,7 @@ export default class VolumeScreen extends Component<{}, { volume: number, protoc
                 this.volume = volume;
                 this.setState({volume: this.volume})
             })
-            .catch((error: any) => {
+            .catch(() => {
                 this.volume = 50;
                 this.setState({volume: this.volume})
             });
@@ -209,8 +195,8 @@ export default class VolumeScreen extends Component<{}, { volume: number, protoc
                                 style={commonStyles.picker} itemStyle={commonStyles.pickerItem}
                                 selectedValue={this.state.port}
                                 onValueChange={(itemValue) => this._onChangePort(itemValue)}>
-                                <Picker.Item label="STANDARD" value="8080"/>
-                                <Picker.Item label="SECURED" value="443"/>
+                                <Picker.Item label="STANDARD" value={8080}/>
+                                <Picker.Item label="SECURED" value={443}/>
                             </Picker>
                         </View>
                     </View>
