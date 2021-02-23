@@ -54,8 +54,8 @@ export default class Mouse extends Component<MousePropsComponent, { pressure: st
 
     updateCoordinates(mouse: any) {
         storeData('mouse', JSON.stringify(mouse)).then(r => {
-            this.dx += Math.round(mouse.x);
-            this.dy += Math.round(mouse.y);
+            this.dx = Math.round(mouse.x);
+            this.dy = Math.round(mouse.y);
             // @ts-ignore
             this.setState({dx: mouse.x})
             // @ts-ignore
