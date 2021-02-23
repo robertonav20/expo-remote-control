@@ -63,7 +63,6 @@ export const _refreshBasePath = (protocol: boolean, hostname: string, port: numb
 export const getServerConfiguration = (): Promise<any> => {
     return getData(SERVER_CONFIGURATION_KEY)
         .then(configuration => {
-            showToast('Get Configuration');
             if (configuration !== null && configuration !== undefined && configuration !== '') return JSON.parse(configuration);
         })
         .catch(() => {
