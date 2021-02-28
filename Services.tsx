@@ -1,5 +1,5 @@
 import {showToast} from "./Notification";
-import {AXIOS, HOSTNAME} from "./Variables";
+import {AXIOS} from "./Variables";
 
 export const _activeMute = () => {
     AXIOS.put('volume/controller/muteOn')
@@ -40,7 +40,7 @@ export const _getVolume = (): Promise<any> => {
             return Promise.resolve(response.data.volume);
         })
         .catch((error: any) => {
-            showToast(error.message + ' ' + error.code);
+            showToast('Error during getVolume : ' + error.message + ' ' + error.code);
             return Promise.reject();
         });
 }

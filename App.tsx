@@ -31,7 +31,7 @@ export default class App extends Component {
             this.fontLoaded = true;
             this.setState({fontLoaded: true})
         } catch (error) {
-            console.log('error loading fonts', error);
+            console.log('Error loading fonts', error);
         }
     }
 

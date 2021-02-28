@@ -47,7 +47,6 @@ export const loadServerConfiguration = () => {
 }
 
 export const _refreshBasePath = (protocol: boolean, hostname: string, port: number, timeout: number) => {
-    console.log(protocol, hostname, port, timeout);
     AXIOS = Axios.create({
         baseURL: protocol ? PROTOCOLS[1] : PROTOCOLS[0] + '://' + hostname + ':' + port + '/',
         timeout: timeout,
@@ -102,7 +101,6 @@ export const storeData = async (key: string, value: any) => {
 export const getData = async (key: string): Promise<any> => {
     try {
         const value = await AsyncStorage.getItem(key);
-        console.log('Value', value)
         if (value !== null) {
             return value;
         } else return null
