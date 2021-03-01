@@ -5,7 +5,6 @@ import {commonStyles, volumeScreenStyles} from './Styles';
 import {AntDesign, Ionicons, Octicons, SimpleLineIcons} from '@expo/vector-icons';
 import {_activeMute, _disableMute, _getVolume, _setVolume} from './Services';
 import {
-    _refreshBasePath,
     getServerConfiguration,
     HOSTNAME,
     PORT,
@@ -58,10 +57,6 @@ export default class VolumeScreen extends Component<{}, { volume: number, protoc
 
     load = () => {
         this.getVolume();
-    }
-
-    refreshBasePath = () => {
-        _refreshBasePath(this.protocol, this.hostname, this.port, this.timeout);
     }
 
     _toggleSwitch = () => {

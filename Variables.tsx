@@ -4,8 +4,6 @@ import Axios, {AxiosInstance} from "axios";
 
 export let SERVER_CONFIGURATION_KEY: string = 'SERVER_CONFIGURATION_KEY';
 export let HOSTNAME: string = 'localhost';
-//export const HOSTNAME: string = 'DESKTOP-FIBGVH5';
-//export const HOSTNAME: string = 'MIL-JPL23Z2';
 export let PROTOCOLS: string[] = ['HTTP', 'HTTPS'];
 export let PROTOCOL: boolean = false;
 export let PORT: number = 8080;
@@ -46,7 +44,11 @@ export const loadServerConfiguration = () => {
         .catch(() => updateServerConfiguration(PROTOCOL, HOSTNAME, PORT, TIMEOUT));
 }
 
-export const _refreshBasePath = (protocol: boolean, hostname: string, port: number, timeout: number) => {
+export const getAxios = () => {
+    return AXIOS;
+}
+
+export const refreshBasePath = (protocol: boolean, hostname: string, port: number, timeout: number) => {
     AXIOS = Axios.create({
         baseURL: protocol ? PROTOCOLS[1] : PROTOCOLS[0] + '://' + hostname + ':' + port + '/',
         timeout: timeout,
@@ -57,7 +59,6 @@ export const _refreshBasePath = (protocol: boolean, hostname: string, port: numb
 
     BASE_PATH = (protocol ? PROTOCOLS[1] : PROTOCOLS[0]) + '://' + hostname + ':' + port + '/';
 }
-
 
 export const getServerConfiguration = (): Promise<any> => {
     return getData(SERVER_CONFIGURATION_KEY)
@@ -84,7 +85,7 @@ export const updateServerConfiguration = async (protocol: boolean, hostname: str
         PROTOCOL = Boolean(protocol);
         HOSTNAME = String(hostname);
         PORT = Number(port);
-        _refreshBasePath(protocol, hostname, port, timeout);
+        refreshBasePath(protocol, hostname, port, timeout);
     } catch (e) {
         showToast(e);
     }
