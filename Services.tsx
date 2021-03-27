@@ -109,7 +109,6 @@ export const _rightClick = () => {
 export const _keyboardInputTrigger = (keyEvents: string[]) : Promise<string> => {
     _getLastAxios();
 
-
     return axios.post('keyboard/controller',{
             keyEvents: keyEvents
         })
@@ -124,7 +123,6 @@ export const _keyboardInputTrigger = (keyEvents: string[]) : Promise<string> => 
 
 export const _getMouseLocation = () : Promise<any> => {
     _getLastAxios();
-
 
     return axios.get('mouse/controller/location')
         .then((response: any) => {

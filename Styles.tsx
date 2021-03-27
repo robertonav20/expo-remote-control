@@ -122,8 +122,24 @@ export const mouseScreenStyles = StyleSheet.create({
 export const keyboardScreenStyles = StyleSheet.create({
     container: {
         flex: 1,
-        justifyContent: 'center',
+        flexDirection: 'column',
+        justifyContent: 'space-around',
         alignItems: 'center'
+    },
+    inputContainer: {
+        flex: 1,
+        width: '100%',
+        flexDirection: 'row',
+        justifyContent: 'space-around',
+        alignItems: 'center'
+    },
+    iconButton: {
+        display: 'flex',
+        justifyContent: 'center',
+        color: 'white',
+        backgroundColor: '#2198f2',
+        width: 'auto',
+        margin: 0
     }
 })
 
@@ -144,19 +160,22 @@ export const multimediaScreenStyles = StyleSheet.create({
         height: '100%'
     },
     shutdownContainer: {
-
+        flex: 1,
+        flexDirection: 'column',
+        alignItems: 'center',
+        justifyContent: 'flex-start'
     },
     multimediaButtonContainer: {
         flex: 1,
         flexDirection: 'column',
-        alignItems: 'flex-end',
-        justifyContent: 'flex-end'
+        alignItems: 'center',
+        justifyContent: 'center'
     },
     volumeButtonContainer: {
         flex: 1,
         flexDirection: 'column',
-        alignItems: 'flex-start',
-        justifyContent: 'flex-start'
+        alignItems: 'center',
+        justifyContent: 'flex-end'
     },
     mainContainer: {
         flex: 1,

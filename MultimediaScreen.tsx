@@ -1,7 +1,7 @@
 import {TouchableOpacity, View} from "react-native";
 import {multimediaScreenStyles} from "./Styles";
 import React, {Component} from "react";
-import {AntDesign, Feather, MaterialCommunityIcons, SimpleLineIcons} from "@expo/vector-icons";
+import {AntDesign, Entypo, Feather, MaterialCommunityIcons, SimpleLineIcons} from "@expo/vector-icons";
 import {_getVolume, _keyboardInputTrigger, _setVolume} from "./Services";
 import {showToast} from "./Notification";
 
@@ -75,6 +75,18 @@ export default class MultimediaScreen extends Component<{}, { size: number, volu
                         </TouchableOpacity>
                     </View>
                     <View style={multimediaScreenStyles.multimediaButtonContainer}>
+                        <TouchableOpacity
+                            style={multimediaScreenStyles.button}>
+                            <Entypo.Button name="arrow-bold-up" size={this.state.size} color="white"
+                                            onPress={() => this.onPress(['VK_HOME'])}
+                                            style={multimediaScreenStyles.icon}/>
+                        </TouchableOpacity>
+                        <TouchableOpacity
+                            style={multimediaScreenStyles.button}>
+                            <Entypo.Button name="arrow-bold-down" size={this.state.size} color="white"
+                                            onPress={() => this.onPress(['VK_END'])}
+                                            style={multimediaScreenStyles.icon}/>
+                        </TouchableOpacity>
                         <TouchableOpacity
                             style={multimediaScreenStyles.button}>
                             <Feather.Button name="chevrons-up" size={this.state.size} color="white"
