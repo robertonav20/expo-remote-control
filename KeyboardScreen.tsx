@@ -28,6 +28,13 @@ export default class KeyboardScreen extends Component<{}, { text: string }> {
         this.handleKeyDown('ClearAll')
     }
 
+    enter() {
+        this.setState({
+            text: ''
+        })
+        this.handleKeyDown('Enter')
+    }
+
     handleKeyDown(e: any) {
         const key: string = typeof e === 'string' ? e : String(e.nativeEvent?.key)
         // @ts-ignore
@@ -44,9 +51,9 @@ export default class KeyboardScreen extends Component<{}, { text: string }> {
                                editable={true}
                                onChangeText={(text) => this.onChangeText(text)}
                                value={this.state.text}/>
-                    <AntDesign.Button name="delete" onPress={() => this.clearAll()} size={24}
+                    <AntDesign.Button name="logout" onPress={() => this.enter()} size={24}
                                       color="white" style={keyboardScreenStyles.iconButton}/>
-                    <AntDesign.Button name="logout" onPress={() => this.handleKeyDown('Enter')} size={24}
+                    <AntDesign.Button name="delete" onPress={() => this.clearAll()} size={24}
                                       color="white" style={keyboardScreenStyles.iconButton}/>
                 </View>
             </View>
