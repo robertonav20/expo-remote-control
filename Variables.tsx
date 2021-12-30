@@ -99,15 +99,12 @@ export const storeData = async (key: string, value: any) => {
     }
 }
 
-export const getData = async (key: string): Promise<any> => {
+export const getData = (key: string): Promise<any> => {
     try {
-        const value = await AsyncStorage.getItem(key);
-        if (value !== null) {
-            return value;
-        } else return null
+        return AsyncStorage.getItem(key);
     } catch (e) {
         showToast(e);
-        return null;
+        return Promise.reject('Error during read configuration');
     }
 }
 
