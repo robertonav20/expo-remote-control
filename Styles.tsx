@@ -1,4 +1,4 @@
-import {StatusBar, StyleSheet} from 'react-native';
+import {StyleSheet} from 'react-native';
 
 export const commonStyles = StyleSheet.create({
     pickerContainer: {
@@ -170,7 +170,6 @@ export const keyboardScreenStyles = StyleSheet.create({
         color: 'white',
         backgroundColor: '#2198f2',
         width: 'auto',
-        margin: 0
     }
 })
 
@@ -302,7 +301,7 @@ export const configurationScreenStyle = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
     },
-    configurations : {
+    configurations: {
         display: 'flex',
         flexDirection: 'column',
         flexGrow: 2,
@@ -333,15 +332,25 @@ export const httpScreenStyle = StyleSheet.create({
         flexGrow: 3,
         flexDirection: 'column',
         justifyContent: 'space-around',
-        paddingTop: StatusBar.currentHeight,
+        paddingTop: 50,
+    },
+    buttonContainer: {
+        borderRadius: 5,
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'center',
+        width: 'auto',
+        gap: 2
     },
     deleteButton: {
         backgroundColor: '#f91b20',
-        padding: 10
+        padding: 10,
+        width: 'auto'
     },
     infoButton: {
         backgroundColor: '#2198f2',
-        padding: 10
+        padding: 10,
+        width: 'auto'
     },
     list: {
         width: '100%'

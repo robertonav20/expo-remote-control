@@ -57,7 +57,7 @@ export default class HttpScreen extends Component<{}, {httpData: any, modalEleme
 
     render() {
         return (
-            <View style={httpScreenStyle.centeredView}>
+            <View style={httpScreenStyle.mainContainer}>
                 <Modal
                     animationType='slide'
                     transparent={true}

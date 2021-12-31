@@ -1,9 +1,7 @@
 import React, {Component} from 'react';
 import {httpScreenStyle} from "../../Styles";
 import {Text, View} from "react-native";
-import {ButtonGroup} from "react-native-elements";
-import HttpShowButton from "./HttpShowButton";
-import HttpClearButton from "./HttpClearButton";
+import {AntDesign, Feather} from "@expo/vector-icons";
 
 export interface HttpItemProps {
     item: any,
@@ -36,11 +34,12 @@ export default class HttpItem extends Component<HttpItemProps, { item: any }> {
                 <Text style={httpScreenStyle.title}>
                     {this.state.item.title}
                 </Text>
-                <ButtonGroup
-                    buttons={[{element: HttpShowButton}, {element: HttpClearButton}]}
-                    onPress={(value) => this.actions(value)}
-                    containerStyle={{borderRadius: 5}}>
-                </ButtonGroup>
+                <View style={httpScreenStyle.buttonContainer}>
+                    <Feather.Button name='info' size={25} onPress={() => this.actions(0)}
+                                    color='white' style={httpScreenStyle.infoButton}/>
+                    <AntDesign.Button name='delete' size={25} color='white' onPress={() => this.actions(1)}
+                                      style={httpScreenStyle.deleteButton}/>
+                </View>
             </View>
         )
     }
