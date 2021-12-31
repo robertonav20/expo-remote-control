@@ -338,9 +338,8 @@ export const httpScreenStyle = StyleSheet.create({
         borderRadius: 5,
         display: 'flex',
         flexDirection: 'row',
-        justifyContent: 'center',
-        width: 'auto',
-        gap: 2
+        justifyContent: 'space-around',
+        width: '10%',
     },
     deleteButton: {
         backgroundColor: '#f91b20',
