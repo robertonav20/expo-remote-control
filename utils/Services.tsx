@@ -1,5 +1,5 @@
 import {showToast} from './Notification';
-import {AXIOS, getAxios} from './Variables';
+import {AXIOS, getAxios} from '../Variables';
 
 let axios = AXIOS;
 

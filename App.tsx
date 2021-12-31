@@ -3,15 +3,15 @@ import {Component} from 'react';
 import {Entypo, Foundation, SimpleLineIcons, Ionicons, MaterialIcons} from '@expo/vector-icons';
 import {NavigationContainer} from '@react-navigation/native';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import VolumeScreen from './VolumeScreen';
-import MouseScreen from './MouseScreen';
-import KeyboardScreen from './KeyboardScreen';
-import MultimediaScreen from './MultimediaScreen';
+import VolumeScreen from './screen/VolumeScreen';
+import MouseScreen from './screen/mouse/MouseScreen';
+import KeyboardScreen from './screen/KeyboardScreen';
+import MultimediaScreen from './screen/MultimediaScreen';
 import AppLoading from 'expo-app-loading';
 import * as Font from 'expo-font';
 import {getServerConfiguration, loadVariables} from './Variables';
-import ConfigurationScreen from './ConfigurationScreen';
-import HttpScreen from './HttpScreen';
+import ConfigurationScreen from './screen/ConfigurationScreen';
+import HttpScreen from './screen/http/HttpScreen';
 
 const Tab = createBottomTabNavigator();
 

@@ -1,8 +1,8 @@
 import {Picker, Switch, Text, View} from 'react-native';
-import {commonStyles, configurationScreenStyle} from './Styles';
+import {commonStyles, configurationScreenStyle} from '../Styles';
 import React, {Component} from 'react';
-import {HOSTNAME, PORT, PROTOCOLS, TIMEOUT, updateServerConfiguration} from './Variables';
-import {showToast} from './Notification';
+import {HOSTNAME, PORT, PROTOCOLS, TIMEOUT, updateServerConfiguration} from '../Variables';
+import {showToast} from '../utils/Notification';
 
 export default class ConfigurationScreen extends Component<{}, { protocol: boolean, hostname: string, port: number, timeout: number }> {
 

@@ -1,10 +1,10 @@
 import React, {Component} from 'react';
 import {SafeAreaView, Text, View} from 'react-native';
 import Slider from '@react-native-community/slider';
-import {volumeScreenStyles} from './Styles';
+import {volumeScreenStyles} from '../Styles';
 import {AntDesign, Ionicons, Octicons, SimpleLineIcons} from '@expo/vector-icons';
-import {_activeMute, _disableMute, _getVolume, _setVolume} from './Services';
-import {showToast} from './Notification';
+import {_activeMute, _disableMute, _getVolume, _setVolume} from '../utils/Services';
+import {showToast} from '../utils/Notification';
 
 export default class VolumeScreen extends Component<{}, { volume: number }> {
     private volume: number = 50;

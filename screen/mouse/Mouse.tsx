@@ -1,11 +1,11 @@
 import React, {Component} from 'react';
 import {Picker, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import Pad from './Pad';
-import {_getMouseLocation, _moveCallback} from './Services';
+import {_getMouseLocation, _moveCallback} from '../../utils/Services';
 import TextInputIcon from './TextInputIcon';
-import {showToast} from './Notification';
-import {commonStyles} from './Styles';
-import {getData, storeData} from './Variables';
+import {showToast} from '../../utils/Notification';
+import {commonStyles} from '../../Styles';
+import {getData, storeData} from '../../Variables';
 
 export interface MousePropsComponent {
     leftCallback: any,

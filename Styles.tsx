@@ -335,9 +335,6 @@ export const httpScreenStyle = StyleSheet.create({
         justifyContent: 'space-around',
         paddingTop: StatusBar.currentHeight,
     },
-    headerContainer: {},
-    middleContainer: {},
-    footerContainer: {},
     deleteButton: {
         backgroundColor: '#f91b20',
         padding: 10
@@ -370,10 +367,13 @@ export const httpScreenStyle = StyleSheet.create({
         alignItems: 'center',
     },
     modalView: {
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'space-between',
         margin: 20,
         backgroundColor: 'white',
         borderRadius: 20,
-        padding: 35,
+        padding: 20,
         alignItems: 'center',
         shadowColor: '#000',
         shadowOffset: {
@@ -384,16 +384,21 @@ export const httpScreenStyle = StyleSheet.create({
         shadowRadius: 4,
         elevation: 5
     },
-    button: {
-        borderRadius: 20,
-        padding: 10,
-        elevation: 2
+    modalInfo: {
+        alignItems: 'flex-start',
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'space-around',
+        width: '100%',
+        marginBottom: 10
     },
     buttonOpen: {
         backgroundColor: '#F194FF',
     },
     buttonClose: {
         backgroundColor: '#2196F3',
+        borderRadius: 5,
+        padding: 10
     },
     textStyle: {
         color: 'white',
@@ -402,8 +407,9 @@ export const httpScreenStyle = StyleSheet.create({
         textAlign: 'center'
     },
     modalText: {
-        marginBottom: 15,
-        textAlign: 'center'
+        fontSize: 20,
+        color: '#2198f2',
+        fontFamily: 'Candara'
     }
 })
 

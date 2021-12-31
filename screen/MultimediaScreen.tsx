@@ -1,9 +1,9 @@
 import {TouchableOpacity, View} from 'react-native';
-import {multimediaScreenStyles} from './Styles';
+import {multimediaScreenStyles} from '../Styles';
 import React, {Component} from 'react';
 import {AntDesign, Entypo, Feather, MaterialCommunityIcons, SimpleLineIcons} from '@expo/vector-icons';
-import {_getVolume, _keyboardInputTrigger, _setVolume} from './Services';
-import {showToast} from './Notification';
+import {_getVolume, _keyboardInputTrigger, _setVolume} from '../utils/Services';
+import {showToast} from '../utils/Notification';
 
 export default class MultimediaScreen extends Component<{}, { size: number, volume: number }> {
     private volume: number = 50;

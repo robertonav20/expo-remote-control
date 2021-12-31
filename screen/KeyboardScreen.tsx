@@ -1,9 +1,9 @@
 import React, {Component} from 'react';
 import {StyleSheet, TextInput, View} from 'react-native';
-import {keyboardScreenStyles} from './Styles';
-import {_keyboardInputTrigger} from './Services';
-import {showToast} from './Notification';
-import {KEYBOARD_MAP_SPECIAL} from './Variables';
+import {keyboardScreenStyles} from '../Styles';
+import {_keyboardInputTrigger} from '../utils/Services';
+import {showToast} from '../utils/Notification';
+import {KEYBOARD_MAP_SPECIAL} from '../Variables';
 import {AntDesign} from '@expo/vector-icons';
 
 export default class KeyboardScreen extends Component<{}, { text: string }> {

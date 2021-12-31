@@ -1,5 +1,5 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import {showToast} from './Notification';
+import {showToast} from './utils/Notification';
 import Axios, {AxiosInstance} from 'axios';
 
 export let SERVER_CONFIGURATION_KEY: string = 'SERVER_CONFIGURATION_KEY';
