@@ -5,7 +5,7 @@ import {_getMouseLocation, _moveCallback} from '../../utils/Services';
 import TextInputIcon from './TextInputIcon';
 import {showToast} from '../../utils/Notification';
 import {commonStyles} from '../../Styles';
-import {getData, storeData} from '../../Variables';
+import {getData, storeData} from "../../utils/Storage";
 
 export interface MousePropsComponent {
     leftCallback: any,

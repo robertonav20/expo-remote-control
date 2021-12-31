@@ -9,7 +9,7 @@ import KeyboardScreen from './screen/KeyboardScreen';
 import MultimediaScreen from './screen/MultimediaScreen';
 import AppLoading from 'expo-app-loading';
 import * as Font from 'expo-font';
-import {getServerConfiguration, loadVariables} from './Variables';
+import {getServerConfiguration, loadHttpConfiguration} from './utils/HttpConfiguration';
 import ConfigurationScreen from './screen/ConfigurationScreen';
 import HttpScreen from './screen/http/HttpScreen';
 
@@ -26,7 +26,7 @@ export default class App extends Component {
     async componentDidMount() {
         try {
             //await clearStorage();
-            await loadVariables();
+            await loadHttpConfiguration();
             await Font.loadAsync({
                 Candara: require('./assets/fonts/candara.ttf')
             })

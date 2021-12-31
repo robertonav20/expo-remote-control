@@ -1,45 +1,27 @@
-import {FlatList, Modal, Text, TouchableHighlight, View} from 'react-native';
 import React, {Component} from 'react';
+import {FlatList, Modal, Text, TouchableHighlight, View} from 'react-native';
 import {httpScreenStyle} from '../../Styles';
-import HttpItem from "./HttpItem";
+import HttpItem from './HttpItem';
+import {getHttpEvents, removeHttpEvent} from '../../utils/HttpConfiguration';
+import {ServerHttpEvent} from '../../utils/Interfaces';
 
-export default class HttpScreen extends Component<{}, {httpData: any, modalElement: any, modalVisible: boolean}> {
-
-    data = [
-        {
-            id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28ba',
-            title: 'First Item',
-            status: 200,
-            path: 'PATH',
-            request: 'BODY REQUEST',
-            response: 'BODY RESPONSE'
-        },
-        {
-            id: '3ac68afc-c605-48d3-a4f8-fbd91aa97f63',
-            title: 'Second Item',
-            status: 200,
-            path: 'PATH',
-            request: 'BODY REQUEST',
-            response: 'BODY RESPONSE'
-        },
-        {
-            id: '58694a0f-3da1-471f-bd96-145571e29d72',
-            title: 'Third Item',
-            status: 200,
-            path: 'PATH',
-            request: 'BODY REQUEST',
-            response: 'BODY RESPONSE'
-        }
-    ];
+export default class HttpScreen extends Component<{}, {data: ServerHttpEvent[], modalElement: ServerHttpEvent | null, modalVisible: boolean}> {
 
     constructor(props: Readonly<any>) {
         super(props);
 
         this.state = {
-            httpData: this.data,
+            data: getHttpEvents(),
             modalElement: null,
             modalVisible: false
         }
+
+        // @ts-ignore
+        this.props.navigation.addListener('focus', () => {
+            this.setState({
+                data: getHttpEvents()
+            })
+        });
     }
 
     infoCallback = (item: any) => {
@@ -50,8 +32,9 @@ export default class HttpScreen extends Component<{}, {httpData: any, modalEleme
     }
 
     deleteCallback = (item: any) => {
+        removeHttpEvent(item);
         this.setState({
-            httpData: this.state.httpData.filter(d => d.id !== item.id)
+            data: getHttpEvents()
         })
     }
 
@@ -67,7 +50,7 @@ export default class HttpScreen extends Component<{}, {httpData: any, modalEleme
                         <View style={httpScreenStyle.modalView}>
                             <View style={httpScreenStyle.modalInfo}>
                                 <Text style={httpScreenStyle.modalText}>
-                                    {this.state.modalElement?.title}
+                                    {this.state.modalElement?.name}
                                 </Text>
                                 <Text style={httpScreenStyle.modalText}>
                                     {this.state.modalElement?.status}
@@ -76,10 +59,13 @@ export default class HttpScreen extends Component<{}, {httpData: any, modalEleme
                                     {this.state.modalElement?.path}
                                 </Text>
                                 <Text style={httpScreenStyle.modalText}>
-                                    {this.state.modalElement?.request}
+                                    {this.state.modalElement?.requestBody}
                                 </Text>
                                 <Text style={httpScreenStyle.modalText}>
-                                    {this.state.modalElement?.response}
+                                    {this.state.modalElement?.responseBody}
+                                </Text>
+                                <Text style={httpScreenStyle.modalText}>
+                                    {this.state.modalElement?.errorMessage}
                                 </Text>
                             </View>
                             <TouchableHighlight
@@ -92,7 +78,7 @@ export default class HttpScreen extends Component<{}, {httpData: any, modalEleme
                     </View>
                 </Modal>
                 <FlatList
-                    data={this.state.httpData}
+                    data={getHttpEvents()}
                     renderItem={
                         (element) => {
                             return (
