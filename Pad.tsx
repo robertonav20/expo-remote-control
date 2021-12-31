@@ -1,5 +1,5 @@
-import React, {Component} from "react";
-import {Animated, PanResponder, StyleSheet, View, ViewStyle} from "react-native";
+import React, {Component} from 'react';
+import {Animated, PanResponder, StyleSheet, View, ViewStyle} from 'react-native';
 
 export interface PadPropsComponent {
     moveCallback: any,

@@ -1,5 +1,5 @@
-import {showToast} from "./Notification";
-import {AXIOS, getAxios} from "./Variables";
+import {showToast} from './Notification';
+import {AXIOS, getAxios} from './Variables';
 
 let axios = AXIOS;
 
@@ -15,7 +15,7 @@ export const _activeMute = () => {
             showToast(response.data.message);
         })
         .catch((error: any) => {
-            showToast(error.message + " " + error.code);
+            showToast(error.message + ' ' + error.code);
         });
 }
 
@@ -27,7 +27,7 @@ export const _disableMute = () => {
             showToast(response.data.message);
         })
         .catch((error: any) => {
-            showToast(error.message + " " + error.code);
+            showToast(error.message + ' ' + error.code);
         });
 }
 
@@ -42,7 +42,7 @@ export const _setVolume = (volume: number) => {
             showToast(response.data.message);
         })
         .catch((error: any) => {
-            showToast(error.message + " " + error.code);
+            showToast(error.message + ' ' + error.code);
         });
 }
 

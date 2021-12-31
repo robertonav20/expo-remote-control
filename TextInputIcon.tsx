@@ -1,6 +1,6 @@
-import React, {Component} from "react";
-import {StyleSheet, TextInput, View} from "react-native";
-import {MaterialCommunityIcons} from "@expo/vector-icons";
+import React, {Component} from 'react';
+import {StyleSheet, TextInput, View} from 'react-native';
+import {MaterialCommunityIcons} from '@expo/vector-icons';
 
 export interface TextInputIconPropsComponent {
     value: string,
@@ -20,7 +20,7 @@ export default class TextInputIcon extends Component<TextInputIconPropsComponent
                 <TextInput
                     style={ this.props.color ? { ...styles.input, color: this.props.color } : styles.input}
                     value={this.props.value}
-                    underlineColorAndroid="transparent"
+                    underlineColorAndroid='transparent'
                     editable={false}
                 />
                 <MaterialCommunityIcons style={styles.textIcon} name={this.props.icon} size={this.props.size} color={this.props.color}/>

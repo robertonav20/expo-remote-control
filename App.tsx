@@ -6,12 +6,12 @@ import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import VolumeScreen from './VolumeScreen';
 import MouseScreen from './MouseScreen';
 import KeyboardScreen from './KeyboardScreen';
-import MultimediaScreen from "./MultimediaScreen";
+import MultimediaScreen from './MultimediaScreen';
 import AppLoading from 'expo-app-loading';
-import * as Font from "expo-font";
-import {getServerConfiguration, loadVariables} from "./Variables";
-import ConfigurationScreen from "./ConfigurationScreen";
-import HttpScreen from "./HttpScreen";
+import * as Font from 'expo-font';
+import {getServerConfiguration, loadVariables} from './Variables';
+import ConfigurationScreen from './ConfigurationScreen';
+import HttpScreen from './HttpScreen';
 
 const Tab = createBottomTabNavigator();
 
@@ -52,17 +52,17 @@ export default class App extends Component {
                         tabBarLabel: '',
                         tabBarIcon: ({color}) => {
                             if (route.name === 'Volume') {
-                                return <Foundation name="volume" size={24} color={color}/>;
+                                return <Foundation name='volume' size={24} color={color}/>;
                             } else if (route.name === 'Mouse') {
-                                return <SimpleLineIcons name="mouse" size={24} color={color}/>;
+                                return <SimpleLineIcons name='mouse' size={24} color={color}/>;
                             } else if (route.name === 'Keyboard') {
-                                return <Entypo name="keyboard" size={24} color={color}/>;
+                                return <Entypo name='keyboard' size={24} color={color}/>;
                             } else if (route.name === 'Multimedia') {
-                                return <Entypo name="note" size={24} color={color}/>;
+                                return <Entypo name='note' size={24} color={color}/>;
                             } else if (route.name === 'Configuration') {
-                                return <Ionicons name="settings-sharp" size={24} color={color}/>;
+                                return <Ionicons name='settings-sharp' size={24} color={color}/>;
                             } else if (route.name === 'Http') {
-                                return <MaterialIcons name="http" size={24} color={color}/>;
+                                return <MaterialIcons name='http' size={24} color={color}/>;
                             }
                         },
                     })}
@@ -78,12 +78,12 @@ export default class App extends Component {
                             padding: 5
                         }
                     }}>
-                    <Tab.Screen name="Volume" component={VolumeScreen}/>
-                    <Tab.Screen name="Mouse" component={MouseScreen}/>
-                    <Tab.Screen name="Keyboard" component={KeyboardScreen}/>
-                    <Tab.Screen name="Multimedia" component={MultimediaScreen}/>
-                    <Tab.Screen name="Configuration" component={ConfigurationScreen}/>
-                    <Tab.Screen name="Http" component={HttpScreen}/>
+                    <Tab.Screen name='Volume' component={VolumeScreen}/>
+                    <Tab.Screen name='Mouse' component={MouseScreen}/>
+                    <Tab.Screen name='Keyboard' component={KeyboardScreen}/>
+                    <Tab.Screen name='Multimedia' component={MultimediaScreen}/>
+                    <Tab.Screen name='Configuration' component={ConfigurationScreen}/>
+                    <Tab.Screen name='Http' component={HttpScreen}/>
                 </Tab.Navigator>
             </NavigationContainer>
         );

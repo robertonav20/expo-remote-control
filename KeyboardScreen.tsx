@@ -1,9 +1,9 @@
-import React, {Component} from "react";
-import {StyleSheet, TextInput, View} from "react-native";
-import {keyboardScreenStyles} from "./Styles";
-import {_keyboardInputTrigger} from "./Services";
-import {showToast} from "./Notification";
-import {KEYBOARD_MAP_SPECIAL} from "./Variables";
+import React, {Component} from 'react';
+import {StyleSheet, TextInput, View} from 'react-native';
+import {keyboardScreenStyles} from './Styles';
+import {_keyboardInputTrigger} from './Services';
+import {showToast} from './Notification';
+import {KEYBOARD_MAP_SPECIAL} from './Variables';
 import {AntDesign} from '@expo/vector-icons';
 
 export default class KeyboardScreen extends Component<{}, { text: string }> {
@@ -51,10 +51,10 @@ export default class KeyboardScreen extends Component<{}, { text: string }> {
                                editable={true}
                                onChangeText={(text) => this.onChangeText(text)}
                                value={this.state.text}/>
-                    <AntDesign.Button name="logout" onPress={() => this.enter()} size={24}
-                                      color="white" style={keyboardScreenStyles.iconButton}/>
-                    <AntDesign.Button name="delete" onPress={() => this.clearAll()} size={24}
-                                      color="white" style={keyboardScreenStyles.iconButton}/>
+                    <AntDesign.Button name='logout' onPress={() => this.enter()} size={24}
+                                      color='white' style={keyboardScreenStyles.iconButton}/>
+                    <AntDesign.Button name='delete' onPress={() => this.clearAll()} size={24}
+                                      color='white' style={keyboardScreenStyles.iconButton}/>
                 </View>
             </View>
         )

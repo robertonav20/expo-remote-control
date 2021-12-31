@@ -1,11 +1,11 @@
-import React, {Component} from "react";
-import {Picker, StyleSheet, Text, TouchableOpacity, View} from "react-native";
+import React, {Component} from 'react';
+import {Picker, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import Pad from './Pad';
-import {_getMouseLocation, _moveCallback} from "./Services";
-import TextInputIcon from "./TextInputIcon";
-import {showToast} from "./Notification";
-import {commonStyles} from "./Styles";
-import {getData, storeData} from "./Variables";
+import {_getMouseLocation, _moveCallback} from './Services';
+import TextInputIcon from './TextInputIcon';
+import {showToast} from './Notification';
+import {commonStyles} from './Styles';
+import {getData, storeData} from './Variables';
 
 export interface MousePropsComponent {
     leftCallback: any,
@@ -86,23 +86,23 @@ export default class Mouse extends Component<MousePropsComponent, { pressure: st
                          backgroundColor={'lightgray'}></Pad>
                 </View>
                 <View style={styles.coordinates}>
-                    <TextInputIcon value={String(this.dx)} icon={"axis-x-arrow"} size={30} color={"#2198f2"}/>
-                    <TextInputIcon value={String(this.dy)} icon={"axis-y-arrow"} size={30} color={"#2198f2"}/>
+                    <TextInputIcon value={String(this.dx)} icon={'axis-x-arrow'} size={30} color={'#2198f2'}/>
+                    <TextInputIcon value={String(this.dy)} icon={'axis-y-arrow'} size={30} color={'#2198f2'}/>
                     <View style={commonStyles.pickerContainer}>
                         <Picker
                             style={commonStyles.picker} itemStyle={commonStyles.pickerItem}
                             selectedValue={this.state.pressure}
                             onValueChange={(itemValue) => this.updatePressure(itemValue)}>
-                            <Picker.Item label="Sensibility : 10%" value="0.1"/>
-                            <Picker.Item label="Sensibility : 20%" value="0.2"/>
-                            <Picker.Item label="Sensibility : 30%" value="0.3"/>
-                            <Picker.Item label="Sensibility : 40%" value="0.4"/>
-                            <Picker.Item label="Sensibility : 50%" value="0.5"/>
-                            <Picker.Item label="Sensibility : 60%" value="0.6"/>
-                            <Picker.Item label="Sensibility : 70%" value="0.7"/>
-                            <Picker.Item label="Sensibility : 80%" value="0.8"/>
-                            <Picker.Item label="Sensibility : 90%" value="0.9"/>
-                            <Picker.Item label="Sensibility : 100%" value="1"/>
+                            <Picker.Item label='Sensibility : 10%' value='0.1'/>
+                            <Picker.Item label='Sensibility : 20%' value='0.2'/>
+                            <Picker.Item label='Sensibility : 30%' value='0.3'/>
+                            <Picker.Item label='Sensibility : 40%' value='0.4'/>
+                            <Picker.Item label='Sensibility : 50%' value='0.5'/>
+                            <Picker.Item label='Sensibility : 60%' value='0.6'/>
+                            <Picker.Item label='Sensibility : 70%' value='0.7'/>
+                            <Picker.Item label='Sensibility : 80%' value='0.8'/>
+                            <Picker.Item label='Sensibility : 90%' value='0.9'/>
+                            <Picker.Item label='Sensibility : 100%' value='1'/>
                         </Picker>
                     </View>
                 </View>
@@ -155,7 +155,7 @@ const styles = StyleSheet.create({
     },
     button: {
         alignItems: 'center',
-        backgroundColor: "#2198f2",
+        backgroundColor: '#2198f2',
         borderRadius: 5,
         padding: 10
     },
