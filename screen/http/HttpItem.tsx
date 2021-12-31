@@ -35,10 +35,14 @@ export default class HttpItem extends Component<HttpItemProps, { item: any }> {
                     {this.state.item.title}
                 </Text>
                 <View style={httpScreenStyle.buttonContainer}>
-                    <Feather.Button name='info' size={25} onPress={() => this.actions(0)}
-                                    color='white' style={httpScreenStyle.infoButton}/>
-                    <AntDesign.Button name='delete' size={25} color='white' onPress={() => this.actions(1)}
-                                      style={httpScreenStyle.deleteButton}/>
+                    <View style={{margin: 2}}>
+                        <Feather.Button name='info' size={25} onPress={() => this.actions(0)}
+                                        color='white' style={httpScreenStyle.infoButton}/>
+                    </View>
+                    <View style={{margin: 2}}>
+                        <AntDesign.Button name='delete' size={25} color='white' onPress={() => this.actions(1)}
+                                          style={httpScreenStyle.deleteButton}/>
+                    </View>
                 </View>
             </View>
         )
