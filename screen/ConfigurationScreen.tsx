@@ -78,8 +78,7 @@ export default class ConfigurationScreen extends Component<{}, { protocol: boole
                                 selectedValue={this.state.hostname}
                                 onValueChange={(itemValue) => this._onChangeHostname(itemValue)}>
                                 <Picker.Item label='LOCALHOST' value='localhost'/>
-                                <Picker.Item label='PC - DESKTOP' value='DESKTOP-FIBGVH5'/>
-                                <Picker.Item label='PC - EVERIS' value='MIL-JPL23Z2'/>
+                                <Picker.Item label='PC - DESKTOP' value='desktop.home'/>
                             </Picker>
                         </View>
                         <View style={commonStyles.pickerContainer}>
