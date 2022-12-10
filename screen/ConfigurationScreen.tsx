@@ -1,4 +1,5 @@
-import {Picker, Switch, Text, View} from 'react-native';
+import {Picker} from '@react-native-picker/picker'
+import {Switch, Text, View} from 'react-native';
 import {commonStyles, configurationScreenStyle} from '../Styles';
 import React, {Component} from 'react';
 import {HOSTNAME, PORT, PROTOCOLS, TIMEOUT, updateServerConfiguration} from '../utils/HttpConfiguration';

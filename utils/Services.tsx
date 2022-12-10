@@ -1,14 +1,11 @@
 import {showToast} from './Notification';
-import {AXIOS, getAxios} from './HttpConfiguration';
-
-let axios = AXIOS;
-
-export const _getLastAxios = () => {
-    axios = getAxios();
-}
+import {getAxios} from './HttpConfiguration';
 
 export const _activeMute = () => {
-    _getLastAxios();
+    const axios = getAxios();
+    if (axios == null) {
+        return Promise.reject()
+    }
 
     axios.put('volume/controller/muteOn')
         .then((response: any) => {
@@ -20,7 +17,10 @@ export const _activeMute = () => {
 }
 
 export const _disableMute = () => {
-    _getLastAxios();
+    const axios = getAxios();
+    if (axios == null) {
+        return Promise.reject()
+    }
 
     axios.put('volume/controller/muteOff')
         .then((response: any) => {
@@ -32,7 +32,10 @@ export const _disableMute = () => {
 }
 
 export const _setVolume = (volume: number) => {
-    _getLastAxios();
+    const axios = getAxios();
+    if (axios == null) {
+        return Promise.reject()
+    }
 
     axios.put('volume/controller/changeVolume',
         {
@@ -47,7 +50,10 @@ export const _setVolume = (volume: number) => {
 }
 
 export const _getVolume = (): Promise<any> => {
-    _getLastAxios();
+    const axios = getAxios();
+    if (axios == null) {
+        return Promise.reject()
+    }
 
     return axios.get('volume/controller/getVolume')
         .then((response: any) => {
@@ -60,7 +66,10 @@ export const _getVolume = (): Promise<any> => {
 }
 
 export const _moveCallback = (x: number, y: number, pressure: number) => {
-    _getLastAxios();
+    const axios = getAxios();
+    if (axios == null) {
+        return Promise.reject()
+    }
 
     return axios.post('mouse/controller',{
             xCoordinate: x,
@@ -77,7 +86,10 @@ export const _moveCallback = (x: number, y: number, pressure: number) => {
 }
 
 export const _leftClick = () => {
-    _getLastAxios();
+    const axios = getAxios();
+    if (axios == null) {
+        return Promise.reject()
+    }
 
     return axios.post('mouse/controller',{
             leftClick: true
@@ -92,7 +104,10 @@ export const _leftClick = () => {
 }
 
 export const _rightClick = () => {
-    _getLastAxios();
+    const axios = getAxios();
+    if (axios == null) {
+        return Promise.reject()
+    }
 
     return axios.post('mouse/controller',{
             rightClick: true
@@ -107,7 +122,10 @@ export const _rightClick = () => {
 }
 
 export const _keyboardInputTrigger = (keyEvents: string[]) : Promise<string> => {
-    _getLastAxios();
+    const axios = getAxios();
+    if (axios == null) {
+        return Promise.reject()
+    }
 
     return axios.post('keyboard/controller',{
             keyEvents: keyEvents
@@ -122,7 +140,11 @@ export const _keyboardInputTrigger = (keyEvents: string[]) : Promise<string> => 
 }
 
 export const _getMouseLocation = () : Promise<any> => {
-    _getLastAxios();
+    const axios = getAxios();
+
+    if (axios == null) {
+        return Promise.reject()
+    }
 
     return axios.get('mouse/controller/location')
         .then((response: any) => {

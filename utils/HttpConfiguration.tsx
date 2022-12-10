@@ -10,21 +10,14 @@ export let PROTOCOL: boolean = false;
 export let PORT: number = 8080;
 export let BASE_PATH: string = (PROTOCOL ? PROTOCOLS[1] : PROTOCOLS[0]) + '://' + HOSTNAME + ':' + PORT + '/';
 export const TIMEOUT: number = 3000;
-export let AXIOS: AxiosInstance = Axios.create({
-    baseURL: BASE_PATH,
-    timeout: TIMEOUT,
-    headers: {
-        Accept: '*/*',
-    }
-});
 export let HTTP_EVENTS: ServerHttpEvent[] = [];
+export let AXIOS: AxiosInstance;
 
-export const getAxios = () => {
+export const getAxios = (): AxiosInstance => {
     return AXIOS;
 }
 
 export const getHttpEvents = () => {
-    console.log(HTTP_EVENTS)
     return HTTP_EVENTS;
 }
 
@@ -34,8 +27,6 @@ export const removeHttpEvent = (httpEvent: ServerHttpEvent) => {
     } else {
         HTTP_EVENTS.pop();
     }
-    console.log(HTTP_EVENTS)
-    console.log(httpEvent)
 }
 
 export const loadHttpConfiguration = async () => {

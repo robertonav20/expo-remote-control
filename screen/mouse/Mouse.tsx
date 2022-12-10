@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
-import {Picker, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
+import {Picker} from '@react-native-picker/picker'
+import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import Pad from './Pad';
 import {_getMouseLocation, _moveCallback} from '../../utils/Services';
 import TextInputIcon from './TextInputIcon';

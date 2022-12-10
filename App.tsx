@@ -3,15 +3,18 @@ import {Component} from 'react';
 import {Entypo, Foundation, SimpleLineIcons, Ionicons, MaterialIcons} from '@expo/vector-icons';
 import {NavigationContainer} from '@react-navigation/native';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
+
+import Spinner from 'react-native-loading-spinner-overlay';
+import * as Font from 'expo-font';
+
+import ConfigurationScreen from './screen/ConfigurationScreen';
 import VolumeScreen from './screen/VolumeScreen';
 import MouseScreen from './screen/mouse/MouseScreen';
 import KeyboardScreen from './screen/KeyboardScreen';
 import MultimediaScreen from './screen/MultimediaScreen';
-import AppLoading from 'expo-app-loading';
-import * as Font from 'expo-font';
-import {getServerConfiguration, loadHttpConfiguration} from './utils/HttpConfiguration';
-import ConfigurationScreen from './screen/ConfigurationScreen';
 import HttpScreen from './screen/http/HttpScreen';
+
+import {getServerConfiguration, loadHttpConfiguration} from './utils/HttpConfiguration';
 
 const Tab = createBottomTabNavigator();
 
@@ -42,7 +45,7 @@ export default class App extends Component {
 
     render() {
         if (!this.fontLoaded) {
-            return <AppLoading/>;
+            return <Spinner visible={true}/>;
         }
 
         return (
@@ -52,17 +55,17 @@ export default class App extends Component {
                         tabBarLabel: '',
                         tabBarIcon: ({color}) => {
                             if (route.name === 'Volume') {
-                                return <Foundation name='volume' size={24} color={color}/>;
+                                return <Foundation name='volume' size={20} color={color}/>;
                             } else if (route.name === 'Mouse') {
-                                return <SimpleLineIcons name='mouse' size={24} color={color}/>;
+                                return <SimpleLineIcons name='mouse' size={18} color={color}/>;
                             } else if (route.name === 'Keyboard') {
-                                return <Entypo name='keyboard' size={24} color={color}/>;
+                                return <Entypo name='keyboard' size={20} color={color}/>;
                             } else if (route.name === 'Multimedia') {
-                                return <Entypo name='note' size={24} color={color}/>;
+                                return <Entypo name='note' size={18} color={color}/>;
                             } else if (route.name === 'Configuration') {
-                                return <Ionicons name='settings-sharp' size={24} color={color}/>;
+                                return <Ionicons name='settings-sharp' size={20} color={color}/>;
                             } else if (route.name === 'Http') {
-                                return <MaterialIcons name='http' size={24} color={color}/>;
+                                return <MaterialIcons name='http' size={22} color={color}/>;
                             }
                         },
                     })}
