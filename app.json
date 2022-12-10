@@ -18,7 +18,8 @@
       "input/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "rob.volume.controller"
     },
     "android": {
       "adaptiveIcon": {
@@ -30,6 +31,11 @@
     "web": {
       "favicon": "./assets/favicon.png"
     },
-    "description": ""
+    "description": "",
+    "extra": {
+      "eas": {
+        "projectId": "4722ac6f-145a-4ef5-bde7-477c3127bb57"
+      }
+    }
   }
 }
