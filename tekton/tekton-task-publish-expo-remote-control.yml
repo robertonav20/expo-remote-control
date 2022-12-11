@@ -40,7 +40,9 @@ spec:
         yarn install
 
         echo "Publishing app"
-        cd node_modules/.bin
-        ./expo login -u $(inputs.params.username) -p $(inputs.params.password)
-        ./eas update --platform android --auto --message "Build with tekton"
-        ./eas build --platform android --no-wait
+        node_modules/.bin/./expo login -u $(inputs.params.username) -p $(inputs.params.password)
+        node_modules/.bin/./eas update --platform android --auto --message "Build with tekton"
+        node_modules/.bin/./eas build --platform android --no-wait
+
+        echo "Clear repo folder"
+        rm -rf $repoFolder/*
