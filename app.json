@@ -11,7 +11,8 @@
       "backgroundColor": "#FEFEFE"
     },
     "updates": {
-      "fallbackToCacheTimeout": 0
+      "fallbackToCacheTimeout": 0,
+      "url": "https://u.expo.dev/4722ac6f-145a-4ef5-bde7-477c3127bb57"
     },
     "assetBundlePatterns": [
       "**/*",
@@ -26,7 +27,10 @@
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#FEFEFE"
       },
-      "package": "rob.volume.controller"
+      "package": "rob.volume.controller",
+      "runtimeVersion": {
+        "policy": "sdkVersion"
+      }
     },
     "web": {
       "favicon": "./assets/favicon.png"

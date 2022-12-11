@@ -2,7 +2,7 @@ import { StyleSheet } from "react-native";
 
 export const commonStyles = StyleSheet.create({
   pickerContainer: {
-    color: "#2198f2",
+    color: "#517fa4",
     backgroundColor: "white",
     borderColor: "white",
     borderRadius: 50,
@@ -14,7 +14,7 @@ export const commonStyles = StyleSheet.create({
   picker: {
     width: 300,
     height: 40,
-    color: "#2198f2",
+    color: "#517fa4",
     fontSize: 20,
     fontFamily: "Candara",
     borderColor: "white",
@@ -23,7 +23,7 @@ export const commonStyles = StyleSheet.create({
   },
   pickerItem: {
     padding: 5,
-    color: "#2198f2",
+    color: "#517fa4",
     backgroundColor: "white",
     borderStyle: undefined,
   },
@@ -41,12 +41,12 @@ export const commonStyles = StyleSheet.create({
     justifyContent: "space-between",
   },
   text: {
-    color: "#2198f2",
+    color: "#517fa4",
     fontSize: 20,
     fontFamily: "Candara",
   },
   textBold: {
-    color: "#2198f2",
+    color: "#517fa4",
     fontSize: 20,
     fontFamily: "Candara",
     fontWeight: "bold",
@@ -54,45 +54,53 @@ export const commonStyles = StyleSheet.create({
 });
 
 export const volumeScreenStyles = StyleSheet.create({
-  container: {
-    alignItems: "center",
-    display: "flex",
+  safeAreaContainer: {
     flex: 1,
+    padding: 25,
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center"
+  },
+  container: {
+    display: "flex",
     flexDirection: "column",
-    justifyContent: "center",
-    marginHorizontal: 16,
+    justifyContent: "space-between",
+    borderRadius: 10,
+    margin: 15,
+    height: "70%",
+    backgroundColor: "#fefefe"
   },
   header: {
-    width: "100%",
-    position: "relative",
-    display: "flex",
-    flexGrow: 1,
-    flexDirection: "column",
-    justifyContent: "center",
-    alignItems: "center",
-    alignContent: "center",
-  },
-  content: {
-    width: "100%",
-    position: "relative",
-    display: "flex",
-    flexGrow: 4,
-    flexDirection: "column",
-    justifyContent: "center",
-    alignItems: "center",
-    alignContent: "center",
-  },
-  configurationContainer: {
-    flexGrow: 4,
-    width: "100%",
     position: "relative",
     display: "flex",
     flexDirection: "column",
     justifyContent: "space-around",
     alignItems: "center",
     alignContent: "center",
+    backgroundColor: "#517fa4",
+    padding: 20,
+    borderTopLeftRadius: 10,
+    borderTopRightRadius: 10
   },
-  headerConfiguration: {
+  middle: {
+    position: "relative",
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "space-around",
+    alignItems: "center",
+    alignContent: "center",
+    padding: 20,
+    borderRadius: 10
+  },
+  bottom: {
+    position: "relative",
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "space-around",
+    padding: 20,
+    borderRadius: 10
+  },
+  configuration: {
     width: "100%",
     flexDirection: "row",
     justifyContent: "space-between",
@@ -107,38 +115,35 @@ export const volumeScreenStyles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "center",
   },
-  bottomConfiguration: {
-    width: "100%",
-    flexDirection: "row",
-    justifyContent: "space-between",
-  },
   textInputStyle: {
     width: "auto",
     textAlign: "center",
     height: 40,
     borderBottomWidth: 2,
-    borderBottomColor: "#2198f2",
+    borderBottomColor: "#517fa4",
     marginBottom: 10,
     fontSize: 20,
     fontFamily: "Candara",
   },
   volumeTitle: {
+    color: "white",
     fontSize: 25,
-    color: "#2198f2",
-    fontFamily: "Candara",
+    fontFamily: "Candara"
   },
   volumeValueTitle: {
+    color: "white",
     fontSize: 40,
-    fontFamily: "Candara",
-    color: "#2198f2",
+    fontFamily: "Candara"
   },
   iconVolumeButton: {
     display: "flex",
     justifyContent: "center",
     color: "white",
-    backgroundColor: "#2198f2",
+    backgroundColor: "#517fa4",
+    borderRadius: 5,
     width: "auto",
     margin: 0,
+    padding: 10
   },
 });
 
@@ -176,8 +181,10 @@ export const keyboardScreenStyles = StyleSheet.create({
     display: "flex",
     justifyContent: "center",
     color: "white",
-    backgroundColor: "#2198f2",
+    backgroundColor: "#517fa4",
     width: "auto",
+    borderRadius: 5,
+    padding: 8
   },
 });
 
@@ -224,8 +231,8 @@ export const multimediaScreenStyles = StyleSheet.create({
   },
   button: {
     alignItems: "center",
-    borderColor: "#2198f2",
-    backgroundColor: "#2198f2",
+    borderColor: "#517fa4",
+    backgroundColor: "#517fa4",
     borderRadius: 5,
     padding: 10,
     margin: 5,
@@ -239,9 +246,29 @@ export const multimediaScreenStyles = StyleSheet.create({
   icon: {
     display: "flex",
     justifyContent: "center",
-    color: "white",
-    borderColor: "#2198f2",
+    borderColor: "#517fa4",
+    borderRadius: 5,
     backgroundColor: "orange",
+    color: "white",
+    width: 40,
+    height: 40,
+  },
+  powerButton: {
+    display: "flex",
+    justifyContent: "center",
+    borderColor: "#517fa4",
+    borderRadius: 5,
+    color: "white",
+    backgroundColor: "tomato",
+    width: 40,
+    height: 40,
+  },
+  logoutButton: {
+    display: "flex",
+    justifyContent: "center",
+    borderColor: "#517fa4",
+    borderRadius: 5,
+    backgroundColor: "green",
     width: 40,
     height: 40,
   },
@@ -272,8 +299,8 @@ export const configurationScreenStyle = StyleSheet.create({
   },
   button: {
     alignItems: "center",
-    borderColor: "#2198f2",
-    backgroundColor: "#2198f2",
+    borderColor: "#517fa4",
+    backgroundColor: "#517fa4",
     borderRadius: 5,
     padding: 10,
     margin: 5,
@@ -288,7 +315,7 @@ export const configurationScreenStyle = StyleSheet.create({
     display: "flex",
     justifyContent: "center",
     color: "white",
-    borderColor: "#2198f2",
+    borderColor: "#517fa4",
     backgroundColor: "orange",
     width: 40,
     height: 40,
@@ -317,7 +344,7 @@ export const configurationScreenStyle = StyleSheet.create({
   },
   protocolTextStyle: {
     fontSize: 20,
-    color: "#2198f2",
+    color: "#517fa4",
     fontFamily: "Candara",
   },
   parametersContainer: {
@@ -353,12 +380,14 @@ export const httpScreenStyle = StyleSheet.create({
   deleteButton: {
     backgroundColor: "#f91b20",
     padding: 10,
-    width: "auto",
+    borderRadius: 5,
+    width: "auto"
   },
   infoButton: {
-    backgroundColor: "#2198f2",
+    backgroundColor: "#517fa4",
     padding: 10,
-    width: "auto",
+    borderRadius: 5,
+    width: "auto"
   },
   list: {
     width: "100%",
@@ -375,7 +404,7 @@ export const httpScreenStyle = StyleSheet.create({
   },
   title: {
     fontSize: 20,
-    color: "#2198f2",
+    color: "#517fa4",
     fontFamily: "Candara",
   },
   centeredView: {
@@ -425,7 +454,7 @@ export const httpScreenStyle = StyleSheet.create({
   },
   modalText: {
     fontSize: 20,
-    color: "#2198f2",
+    color: "#517fa4",
     fontFamily: "Candara",
   },
 });
