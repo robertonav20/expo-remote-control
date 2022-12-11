@@ -1,0 +1,46 @@
+apiVersion: tekton.dev/v1beta1
+kind: Pipeline
+metadata:
+  name: clone-and-build-expo-remote-control
+  labels:
+    app: expo-remote-control
+spec:
+  description: | 
+    This pipeline clones a git repo, then echoes the README file to the stout.
+  params:
+  - name: repo-url
+    type: string
+    description: The git repo URL to clone from.
+  - name: username
+    type: string
+    description: Username expo account.
+  - name: password
+    type: string
+    description: Password expo account.
+  workspaces:
+  - name: source
+    description: | 
+      This workspace contains the cloned repo files, so they can be read by the
+      next task.
+  tasks:
+  - name: fetch-expo-remote-control
+    taskRef:
+      name: git-clone
+    workspaces:
+    - name: output
+      workspace: source
+    params:
+    - name: url
+      value: $(params.repo-url)
+  - name: publish-expo-remote-control
+    runAfter: ['fetch-expo-remote-control']
+    taskRef:
+      name: publish-expo-remote-control
+    workspaces:
+    - name: source
+      workspace: source
+    params:
+    - name: username
+      value: $(params.username)
+    - name: password
+      value: $(params.password)

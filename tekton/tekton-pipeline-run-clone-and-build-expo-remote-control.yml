@@ -1,0 +1,20 @@
+apiVersion: tekton.dev/v1beta1
+kind: PipelineRun
+metadata:
+  name: clone-and-build-expo-remote-control
+  labels:
+    app: expo-remote-control
+spec:
+  pipelineRef:
+    name: clone-and-build-expo-remote-control
+  workspaces:
+  - name: source
+    persistentVolumeClaim:
+      claimName: tekton-sources
+  params:
+  - name: repo-url
+    value: https://github.com/robertonav20/expo-remote-control.git
+  - name: username
+    value: rob24241
+  - name: password
+    value: Juventus20!

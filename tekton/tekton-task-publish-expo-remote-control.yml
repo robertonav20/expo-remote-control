@@ -1,0 +1,46 @@
+apiVersion: tekton.dev/v1beta1
+kind: Task
+metadata:
+  name: publish-expo-remote-control
+  labels:
+    app: expo-remote-control
+spec:
+  params:
+    - name: username
+      type: string
+      description: Expo username account
+    - name: password
+      type: string
+      description: Expo password account
+  workspaces:
+    - name: source
+      description: source git repo.
+  steps:
+    - image: node:16-slim
+      name: publish-expo-remote-control
+      script: |
+        #!/usr/bin/env sh
+        repoFolder="/workspace/source"
+        cd $repoFolder
+        echo "Content of directory ${repoFolder}"
+        ls -la $repoFolder
+        
+        echo "Removing lock files"
+        rm yarn.lock package-lock.json
+
+        echo "Current node version"
+        nodeVersion="Node version: `node --version`"
+        npmVersion="Npm version: `npm -version`"
+        echo $nodeVersion
+        echo $npmVersion
+
+        echo "Install dependencies"
+        npm i yarn
+        yarn add expo expo-cli expo-updates eas-cli
+        yarn install
+
+        echo "Publishing app"
+        cd node_modules/.bin
+        ./expo login -u $(inputs.params.username) -p $(inputs.params.password)
+        ./eas update --platform android --auto --message "Build with tekton"
+        ./eas build --platform android --no-wait
