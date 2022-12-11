@@ -147,14 +147,6 @@ export const volumeScreenStyles = StyleSheet.create({
   },
 });
 
-export const loadingScreenStyles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-  },
-});
-
 export const mouseScreenStyles = StyleSheet.create({
   container: {
     flex: 1,
@@ -442,7 +434,7 @@ export const httpScreenStyle = StyleSheet.create({
     backgroundColor: "#F194FF",
   },
   buttonClose: {
-    backgroundColor: "#2196F3",
+    backgroundColor: "#517fa4",
     borderRadius: 5,
     padding: 10,
   },
