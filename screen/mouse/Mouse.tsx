@@ -183,6 +183,6 @@ const styles = StyleSheet.create({
   },
   buttonText: {
     color: "white",
-    fontFamily: "Candara",
+    fontFamily: "LucidaGrande",
   },
 });

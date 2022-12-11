@@ -4,12 +4,6 @@ import Slider from "@react-native-community/slider";
 import { Icon } from "@rneui/themed";
 import { volumeScreenStyles } from "../Styles";
 import {
-  AntDesign,
-  Ionicons,
-  Octicons,
-  SimpleLineIcons,
-} from "@expo/vector-icons";
-import {
   _activeMute,
   _disableMute,
   _getVolume,
@@ -100,6 +94,13 @@ export default class VolumeScreen extends Component<{}, { volume: number }> {
           <View style={volumeScreenStyles.header}>
             <View>
               <Text style={volumeScreenStyles.volumeTitle}>Volume</Text>
+              <Icon
+                name="tune"
+                type="material"
+                size={40}
+                color="white"
+                style={volumeScreenStyles.iconVolumeButton}
+              />
             </View>
             <View>
               <Text style={volumeScreenStyles.volumeValueTitle}>

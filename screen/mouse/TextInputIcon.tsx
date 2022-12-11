@@ -61,7 +61,7 @@ export const styles = StyleSheet.create({
     borderBottomLeftRadius: 50,
     backgroundColor: "#fff",
     color: "#517fa4",
-    fontSize: 20,
-    fontFamily: "Candara",
+    fontSize: 15,
+    fontFamily: "LucidaGrande",
   },
 });

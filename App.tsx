@@ -35,6 +35,8 @@ export default class App extends Component {
       await loadHttpConfiguration();
       await Font.loadAsync({
         Candara: require("./assets/fonts/candara.ttf"),
+        LucidaGrande: require("./assets/fonts/LucidaGrande.ttf"),
+        LucidaGrandeNew: require("./assets/fonts/LucidaGrandeBold.ttf")
       });
       this.fontLoaded = true;
       this.setState({ fontLoaded: true });
@@ -58,30 +60,29 @@ export default class App extends Component {
             tabBarLabel: "",
             tabBarIcon: ({ color }) => {
               if (route.name === "Volume") {
-                return <Icon name="volume" size={20} color={color} type="foundation"/>;
+                return <Icon name="tune" size={24} color={color} type="material"/>;
               } else if (route.name === "Mouse") {
-                return <Icon name="mouse" size={18} color={color} type="simple-line-icon"/>;
+                return <Icon name="mouse" size={24} color={color} type="simple-line-icon"/>;
               } else if (route.name === "Keyboard") {
-                return <Icon name="keyboard" size={20} color={color} type="entypo"/>;
+                return <Icon name="keyboard" size={24} color={color} type="entypo"/>;
               } else if (route.name === "Multimedia") {
-                return <Icon name="note" size={18} color={color} type="entypo"/>;
+                return <Icon name="note" size={24} color={color} type="entypo"/>;
               } else if (route.name === "Configuration") {
-                return <Icon name="settings-sharp" size={20} color={color} type="ionicon"/>
+                return <Icon name="settings-sharp" size={24} color={color} type="ionicon"/>
               } else if (route.name === "Http") {
-                return <Icon name="http" size={22} color={color} type="material"/>;
+                return <Icon name="http" size={24} color={color} type="material"/>;
               }
             },
           })}
           tabBarOptions={{
-            activeTintColor: "#517fa4",
-            inactiveTintColor: "gray",
+            activeTintColor: "white",
+            inactiveTintColor: "lightgray",
             allowFontScaling: true,
-            labelStyle: {
-              fontSize: 18,
-              fontFamily: "Candara",
-            },
             style: {
+              backgroundColor: "#517fa4",
               padding: 5,
+              borderTopLeftRadius: 5,
+              borderTopRightRadius: 5
             },
           }}
         >

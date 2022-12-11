@@ -84,7 +84,7 @@ export const styles = StyleSheet.create({
     backgroundColor: "#fff",
     color: "#517fa4",
     fontSize: 20,
-    fontFamily: "Candara",
+    fontFamily: "LucidaGrande",
     width: "70%",
     maxWidth: "70%",
   },

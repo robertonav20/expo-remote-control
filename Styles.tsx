@@ -16,7 +16,7 @@ export const commonStyles = StyleSheet.create({
     height: 40,
     color: "#517fa4",
     fontSize: 20,
-    fontFamily: "Candara",
+    fontFamily: "LucidaGrande",
     borderColor: "white",
     borderRadius: 50,
     borderStyle: undefined,
@@ -34,7 +34,7 @@ export const commonStyles = StyleSheet.create({
     alignItems: "center",
     margin: 5,
     fontSize: 24,
-    fontFamily: "Candara",
+    fontFamily: "LucidaGrande",
   },
   fixToText: {
     flexDirection: "row",
@@ -43,12 +43,12 @@ export const commonStyles = StyleSheet.create({
   text: {
     color: "#517fa4",
     fontSize: 20,
-    fontFamily: "Candara",
+    fontFamily: "LucidaGrande",
   },
   textBold: {
     color: "#517fa4",
     fontSize: 20,
-    fontFamily: "Candara",
+    fontFamily: "LucidaGrande",
     fontWeight: "bold",
   },
 });
@@ -73,8 +73,8 @@ export const volumeScreenStyles = StyleSheet.create({
   header: {
     position: "relative",
     display: "flex",
-    flexDirection: "column",
-    justifyContent: "space-around",
+    flexDirection: "row",
+    justifyContent: "space-between",
     alignItems: "center",
     alignContent: "center",
     backgroundColor: "#517fa4",
@@ -123,17 +123,17 @@ export const volumeScreenStyles = StyleSheet.create({
     borderBottomColor: "#517fa4",
     marginBottom: 10,
     fontSize: 20,
-    fontFamily: "Candara",
+    fontFamily: "LucidaGrande",
   },
   volumeTitle: {
     color: "white",
     fontSize: 25,
-    fontFamily: "Candara"
+    fontFamily: "LucidaGrande"
   },
   volumeValueTitle: {
     color: "white",
     fontSize: 40,
-    fontFamily: "Candara"
+    fontFamily: "LucidaGrande"
   },
   iconVolumeButton: {
     display: "flex",
@@ -241,7 +241,7 @@ export const multimediaScreenStyles = StyleSheet.create({
   },
   buttonText: {
     color: "white",
-    fontFamily: "Candara",
+    fontFamily: "LucidaGrande",
   },
   icon: {
     display: "flex",
@@ -309,7 +309,7 @@ export const configurationScreenStyle = StyleSheet.create({
   },
   buttonText: {
     color: "white",
-    fontFamily: "Candara",
+    fontFamily: "LucidaGrande",
   },
   icon: {
     display: "flex",
@@ -345,7 +345,7 @@ export const configurationScreenStyle = StyleSheet.create({
   protocolTextStyle: {
     fontSize: 20,
     color: "#517fa4",
-    fontFamily: "Candara",
+    fontFamily: "LucidaGrande",
   },
   parametersContainer: {
     backgroundColor: "white",
@@ -405,7 +405,7 @@ export const httpScreenStyle = StyleSheet.create({
   title: {
     fontSize: 20,
     color: "#517fa4",
-    fontFamily: "Candara",
+    fontFamily: "LucidaGrande",
   },
   centeredView: {
     flex: 1,
@@ -449,18 +449,18 @@ export const httpScreenStyle = StyleSheet.create({
   textStyle: {
     color: "white",
     fontWeight: "bold",
-    fontFamily: "Candara",
+    fontFamily: "LucidaGrande",
     textAlign: "center",
   },
   modalText: {
     fontSize: 20,
     color: "#517fa4",
-    fontFamily: "Candara",
+    fontFamily: "LucidaGrande",
   },
 });
 
 export const appScreenStyles = StyleSheet.create({
   navigation: {
-    fontFamily: "Candara",
+    fontFamily: "LucidaGrande",
   },
 });
