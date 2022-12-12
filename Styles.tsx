@@ -323,15 +323,9 @@ export const configurationScreenStyle = StyleSheet.create({
   },
   configuration: {
     alignItems: "flex-start",
-    backgroundColor: "white",
-    borderRadius: 5,
     display: "flex",
     flexDirection: "column",
-    justifyContent: "space-between",
-    margin: 15,
-    padding: 10,
-    width: "100%",
-    height: "auto"
+    justifyContent: "space-between"
   },
   content: {
     display: "flex",
