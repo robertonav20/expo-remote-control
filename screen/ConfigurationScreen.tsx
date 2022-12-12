@@ -84,8 +84,9 @@ export default class ConfigurationScreen extends Component<
   render() {
     return (
       <View style={configurationScreenStyle.safeAreaContainer}>
-        <View style={configurationScreenStyle.container}>
+        <View style={configurationScreenStyle.configurationContainer}>
           <View style={configurationScreenStyle.header}>
+            <Icon name="http" size={40} color="white" type="material"/>
             <Text style={configurationScreenStyle.titleStyle}>
               HTTP Configuration
             </Text>
@@ -131,19 +132,27 @@ export default class ConfigurationScreen extends Component<
           </View>
         </View>
         <View />
-        <View style={configurationScreenStyle.footerContainer}>
-          <Text style={commonStyles.textBold}>
-            {"Protocol: " + (this.state.protocol ? "HTTPS" : "HTTP")}
-          </Text>
-          <Text style={commonStyles.textBold}>
-            {"Hostname: " + this.state.hostname}
-          </Text>
-          <Text style={commonStyles.textBold}>
-            {"Port: " + this.state.port}
-          </Text>
-          <Text style={commonStyles.textBold}>
-            {"Timeout: " + this.state.timeout}
-          </Text>
+        <View style={configurationScreenStyle.outputConfigurationContainer}>
+          <View style={configurationScreenStyle.header}>
+            <Icon name="settings-sharp" size={30} color="white" type="ionicon"/>
+            <Text style={configurationScreenStyle.titleStyle}>
+              Current Configuration
+            </Text>
+          </View>
+          <View style={configurationScreenStyle.configuration}>
+            <Text style={commonStyles.textBold}>
+              {"Protocol: " + (this.state.protocol ? "HTTPS" : "HTTP")}
+            </Text>
+            <Text style={commonStyles.textBold}>
+              {"Hostname: " + this.state.hostname}
+            </Text>
+            <Text style={commonStyles.textBold}>
+              {"Port: " + this.state.port}
+            </Text>
+            <Text style={commonStyles.textBold}>
+              {"Timeout: " + this.state.timeout}
+            </Text>
+          </View>
         </View>
       </View>
     );

@@ -291,13 +291,22 @@ export const configurationScreenStyle = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center"
   },
-  container: {
+  configurationContainer: {
     display: "flex",
     flexDirection: "column",
     justifyContent: "space-between",
     borderRadius: 10,
     margin: 15,
-    height: "70%",
+    height: "50%",
+    backgroundColor: "#fefefe"
+  },
+  outputConfigurationContainer: {
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "space-between",
+    borderRadius: 10,
+    margin: 15,
+    width: "100%",
     backgroundColor: "#fefefe"
   },
   header: {
@@ -312,17 +321,17 @@ export const configurationScreenStyle = StyleSheet.create({
     borderTopLeftRadius: 10,
     borderTopRightRadius: 10
   },
-  footerContainer: {
+  configuration: {
     alignItems: "flex-start",
     backgroundColor: "white",
     borderRadius: 5,
     display: "flex",
     flexDirection: "column",
-    flexGrow: 3,
-    height: "auto",
     justifyContent: "space-between",
+    margin: 15,
     padding: 10,
-    width: "100%"
+    width: "100%",
+    height: "auto"
   },
   content: {
     display: "flex",
@@ -340,7 +349,6 @@ export const configurationScreenStyle = StyleSheet.create({
     borderColor: "#517fa4",
     backgroundColor: "#517fa4",
     borderRadius: 5,
-    padding: 10,
     margin: 5,
     width: "auto",
     height: "auto",
