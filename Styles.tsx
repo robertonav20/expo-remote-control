@@ -16,7 +16,7 @@ export const commonStyles = StyleSheet.create({
     height: 40,
     color: "#517fa4",
     fontSize: 20,
-    fontFamily: "LucidaGrande",
+    fontFamily: "LucidaGrandeBold",
     borderColor: "white",
     borderRadius: 50,
     borderStyle: undefined,
@@ -282,12 +282,50 @@ export const multimediaScreenStyles = StyleSheet.create({
 });
 
 export const configurationScreenStyle = StyleSheet.create({
-  mainContainer: {
+  safeAreaContainer: {
     flex: 1,
-    flexGrow: 3,
-    flexDirection: "column",
+    padding: 25,
+    display: "flex",
     alignItems: "center",
-    justifyContent: "space-around",
+    justifyContent: "center"
+  },
+  container: {
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "space-between",
+    borderRadius: 10,
+    margin: 15,
+    height: "70%",
+    backgroundColor: "#fefefe"
+  },
+  header: {
+    position: "relative",
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+    alignContent: "center",
+    backgroundColor: "#517fa4",
+    padding: 20,
+    borderTopLeftRadius: 10,
+    borderTopRightRadius: 10
+  },
+  footerContainer: {
+    width: "100%",
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  content: {
+    display: "flex",
+    flexDirection: "column",
+    flexGrow: 2,
+    margin: 20,
+  },
+  titleStyle: {
+    color: "white",
+    fontSize: 25,
+    fontFamily: "LucidaGrandeBold"
   },
   button: {
     alignItems: "center",
@@ -312,32 +350,10 @@ export const configurationScreenStyle = StyleSheet.create({
     width: 40,
     height: 40,
   },
-  headerContainer: {
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  centerContainer: {
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  footerContainer: {
-    width: "100%",
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  configurations: {
-    display: "flex",
-    flexDirection: "column",
-    flexGrow: 2,
-    margin: 20,
-  },
   protocolTextStyle: {
-    fontSize: 20,
+    fontSize: 25,
     color: "#517fa4",
-    fontFamily: "LucidaGrande",
+    fontFamily: "LucidaGrandeBold",
   },
   parametersContainer: {
     backgroundColor: "white",

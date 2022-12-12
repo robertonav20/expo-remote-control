@@ -10,6 +10,7 @@ import {
   updateServerConfiguration,
 } from "../utils/HttpConfiguration";
 import { showToast } from "../utils/Notification";
+import { Icon } from "@rneui/base";
 
 export default class ConfigurationScreen extends Component<
   {},
@@ -82,9 +83,14 @@ export default class ConfigurationScreen extends Component<
 
   render() {
     return (
-      <View style={configurationScreenStyle.mainContainer}>
-        <View style={configurationScreenStyle.headerContainer}>
-          <View style={configurationScreenStyle.configurations}>
+      <View style={configurationScreenStyle.safeAreaContainer}>
+        <View style={configurationScreenStyle.container}>
+          <View style={configurationScreenStyle.header}>
+            <Text style={configurationScreenStyle.titleStyle}>
+              HTTP Configuration
+            </Text>
+          </View>
+          <View style={configurationScreenStyle.content}>
             <View style={commonStyles.fixToTextCenter}>
               <Text style={configurationScreenStyle.protocolTextStyle}>
                 {this.protocols[0]}
@@ -124,7 +130,7 @@ export default class ConfigurationScreen extends Component<
             </View>
           </View>
         </View>
-        <View style={configurationScreenStyle.centerContainer}></View>
+        <View />
         <View style={configurationScreenStyle.footerContainer}>
           <View style={configurationScreenStyle.parametersContainer}>
             <Text style={commonStyles.textBold}>

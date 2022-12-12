@@ -5,7 +5,7 @@ import {getData, storeData} from "./Storage";
 
 export let SERVER_CONFIGURATION_KEY: string = 'SERVER_CONFIGURATION_KEY';
 export let HOSTNAME: string = 'localhost';
-export let PROTOCOLS: string[] = ['http', 'https'];
+export let PROTOCOLS: string[] = ['HTTP', 'HTTPS'];
 export let PROTOCOL: boolean = false;
 export let PORT: number = 8080;
 export let BASE_PATH: string = (PROTOCOL ? PROTOCOLS[1] : PROTOCOLS[0]) + '://' + HOSTNAME + ':' + PORT + '/';
