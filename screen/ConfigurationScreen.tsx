@@ -132,20 +132,18 @@ export default class ConfigurationScreen extends Component<
         </View>
         <View />
         <View style={configurationScreenStyle.footerContainer}>
-          <View style={configurationScreenStyle.parametersContainer}>
-            <Text style={commonStyles.textBold}>
-              {"Protocol: " + (this.state.protocol ? "HTTPS" : "HTTP")}
-            </Text>
-            <Text style={commonStyles.textBold}>
-              {"Hostname: " + this.state.hostname}
-            </Text>
-            <Text style={commonStyles.textBold}>
-              {"Port: " + this.state.port}
-            </Text>
-            <Text style={commonStyles.textBold}>
-              {"Timeout: " + this.state.timeout}
-            </Text>
-          </View>
+          <Text style={commonStyles.textBold}>
+            {"Protocol: " + (this.state.protocol ? "HTTPS" : "HTTP")}
+          </Text>
+          <Text style={commonStyles.textBold}>
+            {"Hostname: " + this.state.hostname}
+          </Text>
+          <Text style={commonStyles.textBold}>
+            {"Port: " + this.state.port}
+          </Text>
+          <Text style={commonStyles.textBold}>
+            {"Timeout: " + this.state.timeout}
+          </Text>
         </View>
       </View>
     );

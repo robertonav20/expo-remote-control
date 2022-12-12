@@ -9,23 +9,25 @@ export const commonStyles = StyleSheet.create({
     borderStyle: undefined,
     margin: 10,
     justifyContent: "space-evenly",
-    alignItems: "center",
+    alignItems: "center"
   },
   picker: {
     width: 300,
     height: 40,
     color: "#517fa4",
     fontSize: 20,
-    fontFamily: "LucidaGrandeBold",
+    fontFamily: "LucidaGrande",
+    fontWeight: "bold",
     borderColor: "white",
     borderRadius: 50,
-    borderStyle: undefined,
+    borderStyle: undefined
   },
   pickerItem: {
     padding: 5,
     color: "#517fa4",
     backgroundColor: "white",
     borderStyle: undefined,
+    fontWeight: "bold"
   },
   fixToTextCenter: {
     display: "flex",
@@ -311,10 +313,16 @@ export const configurationScreenStyle = StyleSheet.create({
     borderTopRightRadius: 10
   },
   footerContainer: {
-    width: "100%",
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "center",
+    alignItems: "flex-start",
+    backgroundColor: "white",
+    borderRadius: 5,
+    display: "flex",
+    flexDirection: "column",
+    flexGrow: 3,
+    height: "auto",
+    justifyContent: "space-between",
+    padding: 10,
+    width: "100%"
   },
   content: {
     display: "flex",
@@ -354,18 +362,7 @@ export const configurationScreenStyle = StyleSheet.create({
     fontSize: 25,
     color: "#517fa4",
     fontFamily: "LucidaGrandeBold",
-  },
-  parametersContainer: {
-    backgroundColor: "white",
-    borderRadius: 5,
-    display: "flex",
-    flexDirection: "column",
-    flexGrow: 3,
-    height: "auto",
-    justifyContent: "space-between",
-    padding: 10,
-    width: "100%",
-  },
+  }
 });
 
 export const httpScreenStyle = StyleSheet.create({
