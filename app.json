@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "volume-setter-react-native",
-    "slug": "volume-setter-react-native",
+    "name": "Expo Remote Control",
+    "slug": "expo-remote-control",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -12,7 +12,7 @@
     },
     "updates": {
       "fallbackToCacheTimeout": 0,
-      "url": "https://u.expo.dev/4722ac6f-145a-4ef5-bde7-477c3127bb57"
+      "url": "https://u.expo.dev/406ca75d-7abc-4be4-bdeb-2e9255b7ce50"
     },
     "assetBundlePatterns": [
       "**/*",
@@ -20,29 +20,29 @@
     ],
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "rob.volume.controller"
+      "bundleIdentifier": "expo.remote.control"
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
+        "foregroundImage": "./assets/icon.png",
         "backgroundColor": "#FEFEFE"
       },
-      "package": "rob.volume.controller",
+      "package": "expo.remote.control",
       "runtimeVersion": {
         "policy": "sdkVersion"
       }
     },
     "web": {
-      "favicon": "./assets/favicon.png"
+      "favicon": "./assets/favicon-32x32.png"
     },
     "description": "",
-    "extra": {
-      "eas": {
-        "projectId": "4722ac6f-145a-4ef5-bde7-477c3127bb57"
-      }
-    },
     "runtimeVersion": {
       "policy": "sdkVersion"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "406ca75d-7abc-4be4-bdeb-2e9255b7ce50"
+      }
     }
   }
 }
